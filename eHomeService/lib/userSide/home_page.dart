@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:eHomeService/userSide/widgets/widgets.dart';
 
+import 'description_page.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -30,6 +32,25 @@ class _HomePageState extends State<HomePage> {
           ) ,
 
       ),
+      body: new Column(
+        children: [
+          Container(),
+        ],
+      ),
+      floatingActionButton: new FloatingActionButton(
+        onPressed: (){
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context)=>DescriptionPage())
+          );
+        },
+        backgroundColor: Colors.deepPurpleAccent[200],
+        child: Icon(
+          Icons.query_builder,
+          color: Colors.white,
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

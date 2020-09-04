@@ -232,7 +232,6 @@ class _DescriptionPageState extends State<DescriptionPage> {
                   )
                 ],
               ),
-              
               child: Center(
                 child: Text(
                   'Send',
