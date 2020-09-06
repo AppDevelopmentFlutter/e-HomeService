@@ -44,7 +44,7 @@ class _MyAppState extends State<MyApp> {
         fontFamily: "OverpassRegular",
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: userIsLoggedIn != null ?  userIsLoggedIn ? HomePage() : Authenticate()
+      home: userIsLoggedIn != null ?  userIsLoggedIn ? ChatRoom() : Authenticate()
           : Container(
         child: Center(
           child: Authenticate(),
