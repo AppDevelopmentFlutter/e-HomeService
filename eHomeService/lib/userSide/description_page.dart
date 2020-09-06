@@ -4,6 +4,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:eHomeService/userSide/widgets/widgets.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
 
 class DescriptionPage extends StatefulWidget {
   @override
@@ -11,7 +15,16 @@ class DescriptionPage extends StatefulWidget {
 }
 
 class _DescriptionPageState extends State<DescriptionPage> {
+  TextEditingController _textFieldController =TextEditingController();
+  var timekey = new DateTime.now();
   File _image;
+  String _url;
+  String _problem;
+  String _description;
+  var _phoneNumber;
+  String _address;
+
+  final formKey = new GlobalKey<FormState>();
   final picker = ImagePicker();
   Future getImage() async {
     final pickedFile = await picker.getImage(source: ImageSource.gallery);
@@ -19,6 +32,51 @@ class _DescriptionPageState extends State<DescriptionPage> {
     setState(() {
       _image = File(pickedFile.path);
     });
+  }
+
+  uploadStatus() async{
+    final StorageReference postImageRef = FirebaseStorage.instance.ref().child("Post Image");
+    final StorageUploadTask uploadTask = postImageRef.child("$_image.jpg").putFile(_image);
+
+    final StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
+    setState(()  {
+      print('Uploaded');
+    });
+    var ImageUrl = await(await uploadTask.onComplete).ref.getDownloadURL();
+    _url = ImageUrl.toString();
+    print(_url);
+    saveToDatabse(_url);
+    gotoHomePage();
+  }
+
+  saveToDatabse(url){
+    String key = timekey.toString();
+
+    DatabaseReference ref = FirebaseDatabase.instance.reference();
+    DocumentReference documentReference = Firestore.instance.collection("ProblemPost").document(key);
+    Map<String,dynamic> problemDetails = {
+      "Time" : timekey,
+      "Problem" : _problem,
+      "Description" : _description,
+      "ImageUrl" : _url,
+      "Address": _address,
+      "Phone Number": _phoneNumber,
+    };
+    documentReference.setData(problemDetails).whenComplete((){
+        print("DataBase created");
+    });
+  }
+
+  void gotoHomePage(){
+    Navigator.pop(context);
+    Navigator.pop(context);
+  }
+
+   String formatTimeOfDay(TimeOfDay tod) {
+    final now = new DateTime.now();
+    final dt = DateTime(now.year, now.month, now.day, tod.hour, tod.minute);
+    final format = DateFormat.jm();
+    return format.format(dt);
   }
 
   void _showDialog() {
@@ -56,8 +114,8 @@ class _DescriptionPageState extends State<DescriptionPage> {
                   color: Colors.green,
                   padding: EdgeInsets.only(top:10,bottom:10,left:30,right:30),
                   child: Text("Ok", style: simpleStyle()),
-                  onPressed: () {
-                    Navigator.of(context).pop();
+                  onPressed:(){
+                    uploadStatus();
                   },
                 ),
                 Padding(padding: EdgeInsets.symmetric(horizontal: 15))
@@ -91,7 +149,9 @@ class _DescriptionPageState extends State<DescriptionPage> {
         ),
       ),
       body: SingleChildScrollView(
-        child: Column(children: <Widget>[
+        child: Form(
+          key : formKey,
+          child: Column(children: <Widget>[
           Padding(
               padding: EdgeInsets.symmetric(
             vertical: 8,
@@ -126,7 +186,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                               fit: BoxFit.fill,
                             ),
                           )),
-                  )),
+                    )),
               Padding(
                   padding: EdgeInsets.only(top: 60.0),
                   child: IconButton(
@@ -147,9 +207,13 @@ class _DescriptionPageState extends State<DescriptionPage> {
           Padding(
             padding: EdgeInsets.all(9),
             child: TextFormField(
-                onChanged: (val) {
-                  //  name = val;
-                },
+                    onSaved: (value){
+                      return _description=value;
+                    },
+                    onChanged: (value){
+                      return _description=value;
+
+                    },
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   hintText: "Problem *",
@@ -162,9 +226,13 @@ class _DescriptionPageState extends State<DescriptionPage> {
           Padding(
             padding: EdgeInsets.all(9),
             child: TextFormField(
-                onChanged: (val) {
-                  //  name = val;
-                },
+                onSaved: (value){
+                      return _phoneNumber=value;
+                    },
+                    onChanged: (value){
+                      return _phoneNumber=value;
+
+                    },
                 keyboardType: TextInputType.phone,
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
@@ -178,9 +246,13 @@ class _DescriptionPageState extends State<DescriptionPage> {
           Padding(
             padding: EdgeInsets.all(9),
             child: TextFormField(
-                onChanged: (val) {
-                  //  name = val;
-                },
+                onSaved: (value){
+                      return _description=value;
+                    },
+                    onChanged: (value){
+                      return _description=value;
+
+                    },
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   hintText: "Description *",
@@ -193,9 +265,13 @@ class _DescriptionPageState extends State<DescriptionPage> {
           Padding(
             padding: EdgeInsets.all(9),
             child: TextFormField(
-                onChanged: (val) {
-                  //  name = val;
-                },
+                onSaved: (value){
+                      return _address=value;
+                    },
+                    onChanged: (value){
+                      return _address=value;
+
+                    },
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   hintText: "Address *",
@@ -244,6 +320,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
             height: 15,
           ),
         ]),
+        ),
       ),
     );
   }
