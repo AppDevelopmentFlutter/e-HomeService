@@ -1,11 +1,13 @@
 import 'package:eHomeService/chat/helper/helperfunctions.dart';
 import 'package:eHomeService/chat/helper/theme.dart';
+import 'package:eHomeService/chat/models/user.dart';
 import 'package:eHomeService/chat/services/auth.dart';
 import 'package:eHomeService/chat/services/database.dart';
 import 'package:eHomeService/chat/views/chatrooms.dart';
 import 'package:eHomeService/chat/views/forgot_password.dart';
 import 'package:eHomeService/chat/widget/widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:eHomeService/userSide/home_page.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
@@ -48,7 +50,11 @@ class _SignInState extends State<SignIn> {
               userInfoSnapshot.documents[0].data["userEmail"]);
 
           Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => ChatRoom()));
+            context, MaterialPageRoute(builder: (context) => HomePage(
+              email: emailEditingController.text,
+              uid: authService.userId,
+            )));
+              // context, MaterialPageRoute(builder: (context) => ChatRoom()));
         } else {
           setState(() {
             isLoading = false;
