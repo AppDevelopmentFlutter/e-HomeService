@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:eHomeService/userSide/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gradient_text/gradient_text.dart';
@@ -68,8 +69,12 @@ class _DescriptionPageState extends State<DescriptionPage> {
   }
 
   void gotoHomePage(){
-    Navigator.pop(context);
-    Navigator.pop(context);
+    // Navigator.pop(context);
+    // Navigator.pop(context);
+      Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context)=>HomePage())
+          );
   }
 
    String formatTimeOfDay(TimeOfDay tod) {
@@ -79,53 +84,53 @@ class _DescriptionPageState extends State<DescriptionPage> {
     return format.format(dt);
   }
 
-  void _showDialog() {
-    showDialog(
-      context: context, barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return new AlertDialog(
-          title: new Text('Confirm message?',style:TextStyle(color: Colors.black, fontSize: 24, fontFamily: "GentiumBasic",)),
-          content: new SingleChildScrollView(
-            child: new ListBody(
-              children: [
-                new Text('Your household problem will be sent!',
-                    style: simpleStyle()),
-              ],
-            ),
-          ),
-          actions: [
-            Row(
-              children: <Widget>[
-                Padding(padding: EdgeInsets.symmetric(horizontal: 15)),
-                RaisedButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12)),
-                  color: Colors.red,
-                  padding: EdgeInsets.only(top:10,bottom:10,left:15,right:15),
-                  child: Text("Cancel", style: simpleStyle()),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-                Padding(padding: EdgeInsets.symmetric(horizontal: 22)),
-                RaisedButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12)),
-                  color: Colors.green,
-                  padding: EdgeInsets.only(top:10,bottom:10,left:30,right:30),
-                  child: Text("Ok", style: simpleStyle()),
-                  onPressed:(){
-                    uploadStatus();
-                  },
-                ),
-                Padding(padding: EdgeInsets.symmetric(horizontal: 15))
-              ],
-            )
-          ],
-        );
-      },
-    );
-  }
+  // void _showDialog() {
+  //   showDialog(
+  //     context: context, barrierDismissible: false, // user must tap button!
+  //     builder: (BuildContext context) {
+  //       return new AlertDialog(
+  //         title: new Text('Confirm message?',style:TextStyle(color: Colors.black, fontSize: 24, fontFamily: "GentiumBasic",)),
+  //         content: new SingleChildScrollView(
+  //           child: new ListBody(
+  //             children: [
+  //               new Text('Your household problem will be sent!',
+  //                   style: simpleStyle()),
+  //             ],
+  //           ),
+  //         ),
+  //         actions: [
+  //           Row(
+  //             children: <Widget>[
+  //               Padding(padding: EdgeInsets.symmetric(horizontal: 15)),
+  //               RaisedButton(
+  //                 shape: RoundedRectangleBorder(
+  //                     borderRadius: BorderRadius.circular(12)),
+  //                 color: Colors.red,
+  //                 padding: EdgeInsets.only(top:10,bottom:10,left:15,right:15),
+  //                 child: Text("Cancel", style: simpleStyle()),
+  //                 onPressed: () {
+  //                   Navigator.of(context).pop();
+  //                 },
+  //               ),
+  //               Padding(padding: EdgeInsets.symmetric(horizontal: 22)),
+  //               RaisedButton(
+  //                 shape: RoundedRectangleBorder(
+  //                     borderRadius: BorderRadius.circular(12)),
+  //                 color: Colors.green,
+  //                 padding: EdgeInsets.only(top:10,bottom:10,left:30,right:30),
+  //                 child: Text("Ok", style: simpleStyle()),
+  //                 onPressed:(){
+  //                   uploadStatus();
+  //                 },
+  //               ),
+  //               Padding(padding: EdgeInsets.symmetric(horizontal: 15))
+  //             ],
+  //           )
+  //         ],
+  //       );
+  //     },
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -284,7 +289,8 @@ class _DescriptionPageState extends State<DescriptionPage> {
           SizedBox(height: 15),
           GestureDetector(
             onTap: () {
-              _showDialog();
+             // _showDialog();
+             uploadStatus();
             },
             child: Container(
               width: 120,
