@@ -1,5 +1,7 @@
+import 'package:eHomeService/chat/helper/authenticate.dart';
 import 'package:eHomeService/chat/services/auth.dart';
 import 'package:eHomeService/chat/views/signin.dart';
+import 'package:eHomeService/chat/widget/widget.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:eHomeService/userSide/widgets/widgets.dart';
@@ -17,6 +19,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+
+
   String emailValue;
   String userId;
    void initState(){
@@ -54,7 +59,7 @@ class _HomePageState extends State<HomePage> {
             GestureDetector(
               onTap:(){
                 auth.signOut();
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>SignIn()));
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Authenticate()));
               },
               child: Container(
               padding: EdgeInsets.symmetric(horizontal:16.0),
@@ -67,7 +72,8 @@ class _HomePageState extends State<HomePage> {
       body: new Column(
         children: [
           Container(
-            child:  Text('$emailValue'),
+            child:  Text('$emailValue',
+            style: biggerTextStyle() ,),
           ),
         ],
       ),
@@ -84,7 +90,6 @@ class _HomePageState extends State<HomePage> {
           color: Colors.white,
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

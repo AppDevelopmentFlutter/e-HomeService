@@ -63,56 +63,12 @@ class _DescriptionPageState extends State<DescriptionPage> {
           .ref()
           .child("Post Image")
           .child("${randomAlphaNumeric(9)}.jpg");
-     // final StorageUploadTask uploadTask = postImageRef.child("$_image.jpg").putFile(_image);
     final StorageUploadTask task = postImageRef.putFile(_image);
-
-    // final StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
-    // setState(()  {
-    //   print('Uploaded');
-    // });
-    // var ImageUrl = await(await uploadTask.onComplete).ref.getDownloadURL();
-    // _url = ImageUrl.toString();
-    // print(_url);
-    // saveToDtabase(_url);
-    // gotoHomePage();
-
-  // saveToDtabase(url)
-  // {
-  //   DatabaseReference ref = FirebaseDatabase.instance.reference();
-  //   DocumentReference documentReference =Firestore.instance.collection("problem").document(emailValue);
-  //   Map<String,dynamic> problemDetail = {
-  //     "Time" : timekey,
-  //     "Problem" : _problem,
-  //     "Description" : _description,
-  //     "ImageUrl" : _url,
-  //     "Address": _address,
-  //     "Phone Number": _phoneNumber,
-
-  //    };
-  //   documentReference.setData(problemDetail).whenComplete(() {
-  //     print("$emailValue created");
-  //   });
-  // }
-  // void gotoHomePage(){
-  //   // Navigator.pop(context);
-  //   // Navigator.pop(context);
-  //     Navigator.push(
-  //           context,
-  //           MaterialPageRoute(builder: (context)=>HomePage())
-  //         );
-  // }
-      // final StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
-      // setState(()  {
-      //   print('Uploaded');
-      // });
-      // var ImageUrl = await (await uploadTask.onComplete).ref.getDownloadURL();
-      // _url = ImageUrl.toString();
-      // print(_url);
-      // print("This is url $_url");
-      // String key = timekey.toString();
         var downloadurl = await (await task.onComplete).ref.getDownloadURL();
+        print("************************");
       print("This is url $downloadurl");
       print("this is the url of image");
+      print("-------------------------------");
       Map<String, dynamic> problemDetails = {
         "Time": timekey,
         "Problem": _problem,
@@ -121,13 +77,14 @@ class _DescriptionPageState extends State<DescriptionPage> {
         "Address": _address,
         "Phone Number": _phoneNumber,
       };
-
-      // saveToDatabse(_url);
-      // gotoHomePage();
-
-      crudMethods.addData(problemDetails).then((result) {
+      print("crude operation");
+      crudMethods.UploadData(problemDetails,emailValue, timekey.toString() ).then((result) {
+        print("********operation is done*****");
         Navigator.pop(context);
       });
+      // crudMethods.addData(problemDetails).then((result) {
+      //   Navigator.pop(context);
+      // });
     } else {}
   }
 
@@ -301,26 +258,26 @@ class _DescriptionPageState extends State<DescriptionPage> {
             SizedBox(
               height: 20,
             ),
-            Padding(
-              padding: EdgeInsets.all(9),
-              child: TextFormField(
-                  // onSaved: (value){
-                  //   return _description=value;
-                  // },
-                  onChanged: (value) {
-                    _problem = value;
-                  },
-                  style: TextStyle(color: Colors.white),
-                  decoration: InputDecoration(
-                    hintText: "Problem *",
-                    hintStyle: inputTextStyle(),
-                    fillColor: Colors.blue,
-                    enabledBorder: borderStyle(),
-                    focusedBorder: borderStyle(),
-                  )),
+          //   Padding(
+          //     padding: EdgeInsets.all(9),
+          //     child: TextFormField(
+          //         // onSaved: (value){
+          //         //   return _description=value;
+          //         // },
+          //         onChanged: (value) {
+          //           return _problem = value;
+          //         },
+          //         style: TextStyle(color: Colors.white),
+          //         decoration: InputDecoration(
+          //           hintText: "Problem *",
+          //           hintStyle: inputTextStyle(),
+          //           fillColor: Colors.blue,
+          //           enabledBorder: borderStyle(),
+          //           focusedBorder: borderStyle(),
+          //         )),
             
-          ),
-          SizedBox(
+          // ),
+            SizedBox(
             height: 20,
           ),
           Padding(

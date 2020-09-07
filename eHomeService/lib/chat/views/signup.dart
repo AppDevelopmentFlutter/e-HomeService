@@ -35,8 +35,10 @@ class _SignUpState extends State<SignUp> {
         isLoading = true;
       });
 
-      await authService.signUpWithEmailAndPassword(emailEditingController.text,
-          passwordEditingController.text).then((result){
+      await authService.signUpWithEmailAndPassword(
+        emailEditingController.text,
+        passwordEditingController.text)
+        .then((result){
             if(result != null){
 
               Map<String,String> userDataMap = {

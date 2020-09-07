@@ -7,6 +7,11 @@ class CrudMethods {
       print(e.toString());
     });
   }
+  Future<void> UploadData(problemDetails, emailValue, timeValue) async {
+    Firestore.instance.collection("Problem").document(emailValue).collection(timeValue).add(problemDetails).catchError((e) {
+      print(e.toString());
+    });
+  }
 
   // getData() async {
   //   return await Firestore.instance.collection("users").snapshots();
