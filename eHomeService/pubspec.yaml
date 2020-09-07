@@ -37,6 +37,7 @@ dependencies:
   cloud_firestore: ^0.12.9+5
   firebase_storage: ^3.1.5
   shared_preferences: ^0.5.10
+  random_string: ^2.1.0
 
   # for form field
   datetime_picker_formfield: ^1.0.0

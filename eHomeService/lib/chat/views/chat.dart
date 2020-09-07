@@ -114,7 +114,7 @@ class _ChatState extends State<Chat> {
                               borderRadius: BorderRadius.circular(40)
                           ),
                           padding: EdgeInsets.all(12),
-                          child: Image.asset("assets/images/send.png",
+                          child: Image.asset("assets/send.png",
                             height: 25, width: 25,)),
                     ),
                   ],
