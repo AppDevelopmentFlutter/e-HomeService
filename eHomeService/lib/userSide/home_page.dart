@@ -1,3 +1,5 @@
+import 'package:eHomeService/chat/services/auth.dart';
+import 'package:eHomeService/chat/views/signin.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:eHomeService/userSide/widgets/widgets.dart';
@@ -26,7 +28,7 @@ class _HomePageState extends State<HomePage> {
   }
 
 
-
+  AuthService auth = new AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +50,18 @@ class _HomePageState extends State<HomePage> {
               )
             ],
           ) ,
+          actions: [
+            GestureDetector(
+              onTap:(){
+                auth.signOut();
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>SignIn()));
+              },
+              child: Container(
+              padding: EdgeInsets.symmetric(horizontal:16.0),
+             child: Icon(Icons.exit_to_app)
+            )
+            )
+          ],
 
       ),
       body: new Column(
