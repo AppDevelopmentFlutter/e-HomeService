@@ -42,7 +42,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
 
   uploadStatus() async {
     print("Its uploaded");
-    if (_image != null && _image.existsSync()) {
+    if (_image != null && _image.existsSync()){
       setState(() {
         _isLoading = true;
       });
@@ -50,24 +50,26 @@ class _DescriptionPageState extends State<DescriptionPage> {
           .ref()
           .child("Post Image")
           .child("${randomAlphaNumeric(9)}.jpg");
-      final StorageUploadTask uploadTask = postImageRef.child("$_image.jpg").putFile(_image);
-    //  final StorageUploadTask task = postImageRef.putFile(_image);
+     // final StorageUploadTask uploadTask = postImageRef.child("$_image.jpg").putFile(_image);
+    final StorageUploadTask task = postImageRef.putFile(_image);
 
-      final StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
-      setState(()  {
-        print('Uploaded');
-      });
-      var ImageUrl = await (await uploadTask.onComplete).ref.getDownloadURL();
-      _url = ImageUrl.toString();
-      print(_url);
-      print("This is url $_url");
+      // final StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
+      // setState(()  {
+      //   print('Uploaded');
+      // });
+      // var ImageUrl = await (await uploadTask.onComplete).ref.getDownloadURL();
+      // _url = ImageUrl.toString();
+      // print(_url);
+      // print("This is url $_url");
       // String key = timekey.toString();
+        var downloadurl = await (await task.onComplete).ref.getDownloadURL();
+      print("This is url $downloadurl");
       print("this is the url of image");
       Map<String, dynamic> problemDetails = {
         "Time": timekey,
         "Problem": _problem,
-        "Description": _description,
-        "ImageUrl": _url,
+        "Description":_description,
+        "ImageUrl":  downloadurl,
         "Address": _address,
         "Phone Number": _phoneNumber,
       };
@@ -252,7 +254,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                   //   return _description=value;
                   // },
                   onChanged: (value) {
-                    _description = value;
+                    _problem = value;
                   },
                   style: TextStyle(color: Colors.white),
                   decoration: InputDecoration(
@@ -320,10 +322,9 @@ class _DescriptionPageState extends State<DescriptionPage> {
             ),
             SizedBox(height: 15),
             GestureDetector(
-              onTap: () async{
+              onTap: (){
                 print("Button is clicked");
                 uploadStatus();
-               // _showDialog();
                 Navigator.push(context,
                         MaterialPageRoute(builder: (context) => HomePage()));
               },
