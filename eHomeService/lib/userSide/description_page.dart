@@ -11,11 +11,22 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 
 class DescriptionPage extends StatefulWidget {
+  final String email;
+
+  const DescriptionPage({Key key, this.email}) : super(key: key);
+  
   @override
   _DescriptionPageState createState() => _DescriptionPageState();
 }
 
 class _DescriptionPageState extends State<DescriptionPage> {
+  String emailValue;
+  void initState(){
+    super.initState();
+    // you can use this.widget.foo here
+    emailValue = this.widget.email;
+
+  }
   TextEditingController _textFieldController =TextEditingController();
   var timekey = new DateTime.now();
   File _image;
@@ -46,28 +57,26 @@ class _DescriptionPageState extends State<DescriptionPage> {
     var ImageUrl = await(await uploadTask.onComplete).ref.getDownloadURL();
     _url = ImageUrl.toString();
     print(_url);
-    saveToDatabse(_url);
+    saveToDtabase(_url);
     gotoHomePage();
   }
-
-  saveToDatabse(url){
-    String key = timekey.toString();
-
+  saveToDtabase(url)
+  {
     DatabaseReference ref = FirebaseDatabase.instance.reference();
-    DocumentReference documentReference = Firestore.instance.collection("ProblemPost").document(key);
-    Map<String,dynamic> problemDetails = {
+    DocumentReference documentReference =Firestore.instance.collection("problem").document(emailValue);
+    Map<String,dynamic> problemDetail = {
       "Time" : timekey,
       "Problem" : _problem,
       "Description" : _description,
       "ImageUrl" : _url,
       "Address": _address,
       "Phone Number": _phoneNumber,
-    };
-    documentReference.setData(problemDetails).whenComplete((){
-        print("DataBase created");
+
+     };
+    documentReference.setData(problemDetail).whenComplete(() {
+      print("$emailValue created");
     });
   }
-
   void gotoHomePage(){
     // Navigator.pop(context);
     // Navigator.pop(context);
@@ -213,10 +222,13 @@ class _DescriptionPageState extends State<DescriptionPage> {
             padding: EdgeInsets.all(9),
             child: TextFormField(
                     onSaved: (value){
-                      return _description=value;
+                      return _problem=value;
+                    },
+                    validator:(val){
+                    return  _problem = val;
                     },
                     onChanged: (value){
-                      return _description=value;
+                    return  _problem=value;
 
                     },
                 style: TextStyle(color: Colors.white),
@@ -235,8 +247,10 @@ class _DescriptionPageState extends State<DescriptionPage> {
                       return _phoneNumber=value;
                     },
                     onChanged: (value){
-                      return _phoneNumber=value;
-
+                    return  _phoneNumber=value;
+                    },
+                    validator: (value){
+                    return  _phoneNumber=value;
                     },
                 keyboardType: TextInputType.phone,
                 style: TextStyle(color: Colors.white),
@@ -258,6 +272,9 @@ class _DescriptionPageState extends State<DescriptionPage> {
                       return _description=value;
 
                     },
+                    validator: (value){
+                      return _description=value;
+                    },
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   hintText: "Description *",
@@ -277,6 +294,11 @@ class _DescriptionPageState extends State<DescriptionPage> {
                       return _address=value;
 
                     },
+                    validator: (value){
+                      return _address=value;
+
+                    },
+                    
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   hintText: "Address *",

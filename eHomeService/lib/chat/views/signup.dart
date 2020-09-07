@@ -4,6 +4,7 @@ import 'package:eHomeService/chat/services/auth.dart';
 import 'package:eHomeService/chat/services/database.dart';
 import 'package:eHomeService/chat/views/chatrooms.dart';
 import 'package:eHomeService/chat/widget/widget.dart';
+import 'package:eHomeService/userSide/home_page.dart';
 import 'package:flutter/material.dart';
 
 class SignUp extends StatefulWidget {
@@ -50,7 +51,8 @@ class _SignUpState extends State<SignUp> {
               HelperFunctions.saveUserEmailSharedPreference(emailEditingController.text);
 
               Navigator.pushReplacement(context, MaterialPageRoute(
-                  builder: (context) => ChatRoom()
+                  builder: (context) => HomePage(email:emailEditingController.text, uid: authService.userId,)
+                  // builder: (context) => ChatRoom()
               ));
             }
       });
