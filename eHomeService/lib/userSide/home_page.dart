@@ -1,16 +1,16 @@
 import 'package:eHomeService/chat/helper/authenticate.dart';
 import 'package:eHomeService/chat/services/auth.dart';
+import 'package:eHomeService/chat/views/chat.dart';
 import 'package:eHomeService/chat/views/signin.dart';
 import 'package:eHomeService/chat/widget/widget.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:eHomeService/userSide/widgets/widgets.dart';
-
+import 'activity/problemActivity.dart';
 import 'description_page.dart';
 
 class HomePage extends StatefulWidget {
-    final String email;
-
+  final String email;
   final String uid;
 
   const HomePage({Key key, this.email, this.uid}) : super(key: key);
@@ -18,10 +18,7 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-
-
-
+class _HomePageState extends State<HomePage>  with SingleTickerProviderStateMixin{
   String emailValue;
   String userId;
    void initState(){
@@ -30,7 +27,12 @@ class _HomePageState extends State<HomePage> {
     emailValue = this.widget.email;
     userId = this.widget.uid;
 
+    _tabController = new TabController(length: 2, vsync: this, initialIndex: 0);
   }
+
+  TabController _tabController;
+
+
 
 
   AuthService auth = new AuthService();
@@ -55,7 +57,7 @@ class _HomePageState extends State<HomePage> {
               )
             ],
           ) ,
-          actions: [
+        actions: [
             GestureDetector(
               onTap:(){
                 auth.signOut();
@@ -67,29 +69,32 @@ class _HomePageState extends State<HomePage> {
             )
             )
           ],
-
-      ),
-      body: new Column(
-        children: [
-          Container(
-            child:  Text('$emailValue',
-            style: biggerTextStyle() ,),
-          ),
-        ],
-      ),
-      floatingActionButton: new FloatingActionButton(
-        onPressed: (){
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context)=>DescriptionPage(email: emailValue,))
-          );
-        },
-        backgroundColor: Colors.deepPurpleAccent[200],
-        child: Icon(
-          Icons.query_builder,
-          color: Colors.white,
+        bottom: new TabBar(
+          controller: _tabController,
+          indicatorColor: Colors.white ,
+          tabs: <Widget>[
+            new Tab(text:"Problem"),
+            new Tab(text:"Chat"),
+            // new Tab(text:"Bank"),
+          ]
         ),
       ),
-    );
+
+      body: new TabBarView(
+        controller: _tabController,
+        children: [
+          new ProblemPost(emailId: emailValue),
+          new DescriptionPage(email: emailValue,),
+        ],
+      ),
+
+
+
+
+
+
+
+
+       );
   }
 }

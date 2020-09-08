@@ -80,7 +80,9 @@ class _DescriptionPageState extends State<DescriptionPage> {
       print("crude operation");
       crudMethods.UploadData(problemDetails,emailValue, timekey.toString() ).then((result) {
         print("********operation is done*****");
-        Navigator.pop(context);
+        Scaffold.of(context).showSnackBar(
+          SnackBar(content: Text('Saved in Database')));
+        print("after the snacpbar");
       });
       // crudMethods.addData(problemDetails).then((result) {
       //   Navigator.pop(context);
@@ -88,28 +90,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
     } else {}
   }
 
-  //saveToDatabse(url){
-  // String key = timekey.toString();
 
-  // DatabaseReference ref = FirebaseDatabase.instance.reference();
-  // DocumentReference documentReference = Firestore.instance.collection("ProblemPost").document(key);
-  // Map<String,dynamic> problemDetails = {
-  //   "Time" : timekey,
-  //   "Problem" : _problem,
-  //   "Description" : _description,
-  //   "ImageUrl" : _url,
-  //   "Address": _address,
-  //   "Phone Number": _phoneNumber,
-  // };
-  // documentReference.setData(problemDetails).whenComplete((){
-  //     print("DataBase created");
-  // });
-//}
-
-  // void gotoHomePage(){
-  //   Navigator.pop(context);
-  //   Navigator.pop(context);
-  // }
 
   String formatTimeOfDay(TimeOfDay tod) {
     final now = new DateTime.now();
@@ -118,90 +99,26 @@ class _DescriptionPageState extends State<DescriptionPage> {
     return format.format(dt);
   }
 
-  // void _showDialog() {
-  //   showDialog(
-  //     context: context, barrierDismissible: false, // user must tap button!
-  //     builder: (BuildContext context) {
-  //       return new AlertDialog(
-  //         title: new Text('Confirm message?',style:TextStyle(color: Colors.black, fontSize: 24, fontFamily: "GentiumBasic",)),
-  //         title: new Text('Confirm message?',
-  //             style: TextStyle(
-  //               color: Colors.black,
-  //               fontSize: 24,
-  //               fontFamily: "GentiumBasic",
-  //             )),
-  //         content: new SingleChildScrollView(
-  //           child: new ListBody(
-  //             children: [
-  //               new Text('Your household problem will be sent!',
-  //                   style: simpleStyle()),
-  //             ],
-  //           ),
-  //         ),
-  //         actions: [
-  //           Row(
-  //             children: <Widget>[
-  //               Padding(padding: EdgeInsets.symmetric(horizontal: 15)),
-  //               RaisedButton(
-  //                 shape: RoundedRectangleBorder(
-  //                     borderRadius: BorderRadius.circular(12)),
-  //                 color: Colors.red,
-  //                 padding: EdgeInsets.only(top:10,bottom:10,left:15,right:15),
-  //                 padding:
-  //                     EdgeInsets.only(top: 10, bottom: 10, left: 15, right: 15),
-  //                 child: Text("Cancel", style: simpleStyle()),
-  //                 onPressed: () {
-  //                   Navigator.of(context).pop();
-  //                 },
-  //               ),
-  //               Padding(padding: EdgeInsets.symmetric(horizontal: 22)),
-  //               RaisedButton(
-  //                 shape: RoundedRectangleBorder(
-  //                     borderRadius: BorderRadius.circular(12)),
-  //                 color: Colors.green,
-  //                 padding: EdgeInsets.only(top:10,bottom:10,left:30,right:30),
-  //                 child: Text("Ok", style: simpleStyle()),
-  //                 onPressed:(){
-  //                   uploadStatus();
-  //                 padding:
-  //                     EdgeInsets.only(top: 10, bottom: 10, left: 30, right: 30),
-  //                 child: Text("Ok", style: simpleStyle()),
-  //                 onPressed: () {
-  //                   //  uploadStatus();
-  //                   // Navigator.pop(context);
-  //                   Navigator.push(context,
-  //                       MaterialPageRoute(builder: (context) => HomePage()));
-  //                 },
-  //               ),
-  //               Padding(padding: EdgeInsets.symmetric(horizontal: 15))
-  //             ],
-  //           )
-  //         ],
-  //       );
-  //     },
-  //   );
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        title: Row(
-          children: <Widget>[
-            Padding(padding: EdgeInsets.symmetric(horizontal: 8)),
-            GradientText("Description  Page",
-                gradient: LinearGradient(colors: [
-                  Colors.deepPurpleAccent[200],
-                  Colors.redAccent[200]
-                ]),
-                style: appbarStyle(),
-                textAlign: TextAlign.center)
-          ],
-        ),
-      ),
+      // backgroundColor: Colors.black,
+      // appBar: AppBar(
+      //   backgroundColor: Colors.transparent,
+      //   elevation: 0.0,
+      //   title: Row(
+      //     children: <Widget>[
+      //       Padding(padding: EdgeInsets.symmetric(horizontal: 8)),
+      //       GradientText("Description  Page",
+      //           gradient: LinearGradient(colors: [
+      //             Colors.deepPurpleAccent[200],
+      //             Colors.redAccent[200]
+      //           ]),
+      //           style: appbarStyle(),
+      //           textAlign: TextAlign.center)
+      //     ],
+      //   ),
+      // ),
       body: SingleChildScrollView(
         child: Form(
           key: formKey,

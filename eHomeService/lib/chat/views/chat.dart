@@ -4,6 +4,7 @@ import 'package:eHomeService/chat/services/database.dart';
 import 'package:eHomeService/chat/widget/widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:gradient_text/gradient_text.dart';
 
 class Chat extends StatefulWidget {
   final String chatRoomId;
@@ -66,7 +67,19 @@ class _ChatState extends State<Chat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarMain(context),
+      appBar: AppBar(
+    backgroundColor: Colors.black,
+    title: GradientText(
+      'Message',
+      gradient: gradientColors(),
+      style: TextStyle(
+        fontSize: 22,
+        fontFamily: "GentiumBasic"
+      ),
+    ),
+    elevation: 0.0,
+    centerTitle: false,
+  ),
       body: Container(
         child: Stack(
           children: [
