@@ -3,6 +3,7 @@ import 'package:eHomeService/chat/helper/helperfunctions.dart';
 import 'package:eHomeService/chat/views/chatrooms.dart';
 import 'package:eHomeService/userSide/description_page.dart';
 import 'package:eHomeService/userSide/home_page.dart';
+import 'package:eHomeService/userSide/splashscreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -23,6 +24,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     getLoggedInState();
     super.initState();
+    
   }
 
   getLoggedInState() async {
@@ -45,7 +47,7 @@ class _MyAppState extends State<MyApp> {
         fontFamily: "OverpassRegular",
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: userIsLoggedIn != null ?  userIsLoggedIn ? HomePage() : Authenticate()
+      home: userIsLoggedIn != null ?  userIsLoggedIn ? SplashScreen() : Authenticate()
           : Container(
         child: Center(
           child: Authenticate(),

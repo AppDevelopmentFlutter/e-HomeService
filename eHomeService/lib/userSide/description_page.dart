@@ -375,6 +375,8 @@ class _DescriptionPageState extends State<DescriptionPage> {
             onTap: () {
              // _showDialog();
              uploadStatus();
+               Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => HomePage()));
             },
             child: Container(
               width: 120,

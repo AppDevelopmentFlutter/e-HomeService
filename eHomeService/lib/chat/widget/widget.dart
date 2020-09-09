@@ -28,3 +28,5 @@ TextStyle simpleTextStyle() {
 TextStyle biggerTextStyle() {
   return TextStyle(color: Colors.white, fontSize: 17);
 }
+
+

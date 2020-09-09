@@ -74,8 +74,8 @@ class _SignInState extends State<SignIn> {
               child: Center(child: CircularProgressIndicator()),
             )
           : Container(
-              padding: EdgeInsets.symmetric(horizontal: 24),
-              child: Column(
+              padding: EdgeInsets.symmetric(horizontal: 24,vertical: 70),
+              child: ListView(
                 children: [
                   Spacer(),
                   Form(
