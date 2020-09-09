@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:gradient_widgets/gradient_widgets.dart';
 
 Widget appBarMain(BuildContext context) {
   return AppBar(
-    title: Image.asset(
-      "assets/logo.png",
-      height: 40,
+    backgroundColor: Colors.black,
+    title: GradientText(
+      'eHomeService',
+      gradient: gradientColors(),
+      style: TextStyle(
+        fontSize: 22,
+        fontFamily: "GentiumBasic"
+      ),
     ),
     elevation: 0.0,
     centerTitle: false,
@@ -29,4 +35,8 @@ TextStyle biggerTextStyle() {
   return TextStyle(color: Colors.white, fontSize: 17);
 }
 
-
+LinearGradient gradientColors(){
+  return LinearGradient(
+                  colors: [Colors.deepPurpleAccent[200],
+                        Colors.redAccent[200]]);
+}

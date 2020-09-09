@@ -142,12 +142,7 @@ class _SignInState extends State<SignIn> {
                       padding: EdgeInsets.symmetric(vertical: 16),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
-                          gradient: LinearGradient(
-                            colors: [
-                              const Color(0xff007EF4),
-                              const Color(0xff2A75BC)
-                            ],
-                          )),
+                          gradient: gradientColors()),
                       width: MediaQuery.of(context).size.width,
                       child: Text(
                         "Sign In",
@@ -202,6 +197,8 @@ class _SignInState extends State<SignIn> {
                 ],
               ),
             ),
+   
+   
     );
   }
 }
