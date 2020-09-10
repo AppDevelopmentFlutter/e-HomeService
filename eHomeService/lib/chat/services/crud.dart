@@ -18,8 +18,4 @@ class CrudMethods {
       print(e.toString());
     });
   }
-
-  // getData() async {
-  //   return await Firestore.instance.collection("users").snapshots();
-  // }
 }

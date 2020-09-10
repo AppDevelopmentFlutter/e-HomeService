@@ -48,30 +48,29 @@ class _ProblemPostState extends State<ProblemPost> {
           color: Colors.white,
         ),
       ),
-      body: SingleChildScrollView(
-        child: Flexible(
-          child: StreamBuilder(
+      body: StreamBuilder(
             stream: Firestore.instance.collection('Problems').document(email).collection('timeValue').snapshots(),
             builder: (context,snapshot){
+              
               if(snapshot.hasData){
                 return ListView.builder(
                   shrinkWrap: true,
                   itemCount: snapshot.data.documents.length,
                   itemBuilder: (context, index){
                     DocumentSnapshot documentSnapshot = snapshot.data.documents[index];
-                    if(documentSnapshot.data !=null){
+                    while(documentSnapshot.data !=null){
                       return GestureDetector(
                         onTap:null ,
                         child: DisplayProblemCard(documentSnapshot: documentSnapshot),
                       );
                     }
+
                   }
                 );
               }
             },
           ),
-        ),
-      ),
+        
     );
   }
 }
