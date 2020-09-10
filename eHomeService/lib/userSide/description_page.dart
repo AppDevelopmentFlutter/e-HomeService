@@ -80,14 +80,12 @@ class _DescriptionPageState extends State<DescriptionPage> {
         "Phone Number": _phoneNumber,
       };
       print("crude operation");
-      crudMethods.UploadData(problemDetails,emailValue, timekey.toString() ).then((result) {
+      crudMethods.Upload(problemDetails,emailValue, timekey.toString() ).then((result) {
         print("********operation is done*****");
         Scaffold.of(context).showSnackBar(
           SnackBar(content: Text('Saved in Database')));
         print("after the snacpbar");
       });
-      // crudMethods.addData(problemDetails).then((result) {
-      //   Navigator.pop(context);
       // });
     } else {}
   }
@@ -104,23 +102,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.black,
-      // appBar: AppBar(
-      //   backgroundColor: Colors.transparent,
-      //   elevation: 0.0,
-      //   title: Row(
-      //     children: <Widget>[
-      //       Padding(padding: EdgeInsets.symmetric(horizontal: 8)),
-      //       GradientText("Description  Page",
-      //           gradient: LinearGradient(colors: [
-      //             Colors.deepPurpleAccent[200],
-      //             Colors.redAccent[200]
-      //           ]),
-      //           style: appbarStyle(),
-      //           textAlign: TextAlign.center)
-      //     ],
-      //   ),
-      // ),
+
       body: SingleChildScrollView(
         child: Form(
           key: formKey,
@@ -177,31 +159,12 @@ class _DescriptionPageState extends State<DescriptionPage> {
             SizedBox(
               height: 20,
             ),
-          //   Padding(
-          //     padding: EdgeInsets.all(9),
-          //     child: TextFormField(
-          //         // onSaved: (value){
-          //         //   return _description=value;
-          //         // },
-          //         onChanged: (value) {
-          //           return _problem = value;
-          //         },
-          //         style: TextStyle(color: Colors.white),
-          //         decoration: InputDecoration(
-          //           hintText: "Problem *",
-          //           hintStyle: inputTextStyle(),
-          //           fillColor: Colors.blue,
-          //           enabledBorder: borderStyle(),
-          //           focusedBorder: borderStyle(),
-          //         )),
-            
-          // ),
             SizedBox(
             height: 20,
           ),
-          Padding(
-            padding: EdgeInsets.all(9),
-            child: TextFormField(
+            Padding(
+              padding: EdgeInsets.all(9),
+              child: TextFormField(
                     onSaved: (value){
                       return _problem=value;
                     },
@@ -221,9 +184,9 @@ class _DescriptionPageState extends State<DescriptionPage> {
                   focusedBorder: borderStyle(),
                 )),
           ),
-          Padding(
-            padding: EdgeInsets.all(9),
-            child: TextFormField(
+            Padding(
+              padding: EdgeInsets.all(9),
+              child: TextFormField(
                 onSaved: (value){
                       return _phoneNumber=value;
                     },
@@ -243,7 +206,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                   focusedBorder: borderStyle(),
                 )),
           ),
-          Padding(
+            Padding(
             padding: EdgeInsets.all(9),
             child: TextFormField(
                 onSaved: (value){
@@ -265,7 +228,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                   focusedBorder: borderStyle(),
                 )),
           ),
-          Padding(
+            Padding(
             padding: EdgeInsets.all(9),
             child: TextFormField(
                 onSaved: (value){
@@ -289,8 +252,8 @@ class _DescriptionPageState extends State<DescriptionPage> {
                   focusedBorder: borderStyle(),
                 )),
           ),
-          SizedBox(height: 15),
-          GestureDetector(
+            SizedBox(height: 15),
+            GestureDetector(
             onTap: () {
              // _showDialog();
              uploadStatus();
@@ -318,7 +281,6 @@ class _DescriptionPageState extends State<DescriptionPage> {
                 ),
               ),
             ),
-          
             SizedBox(
               height: 15,
             ),

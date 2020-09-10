@@ -1,8 +1,13 @@
 import 'package:eHomeService/chat/services/crud.dart';
 import 'package:eHomeService/chat/views/chat.dart';
 import 'package:eHomeService/userSide/usersTile.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:eHomeService/chat/views/chat.dart';
+import 'package:eHomeService/chat/views/chatrooms.dart';
+import 'package:eHomeService/chat/widget/widget.dart';
+import 'package:eHomeService/userSide/activity/displayproblemcard.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter/material.dart';
 
 class ProblemPost extends StatefulWidget {
@@ -16,15 +21,18 @@ class ProblemPost extends StatefulWidget {
 }
 
 class _ProblemPostState extends State<ProblemPost> {
+  final firebaseInstance = Firestore.instance;
   String email;
 
-  @override
-  void initState() {
-    crudMethods.getData().then((result) {
-      setState(() {
-        usersStream = result;
+
+  display(){
+    firebaseInstance.collection('Problems').document(email).collection('timeValue').getDocuments().then((querySnapshot) {
+      querySnapshot.documents.forEach((element) {
+        print(element.data);
       });
     });
+  }
+   void initState(){
     super.initState();
     // you can use this.widget.foo here
     email = this.widget.emailId;
@@ -83,21 +91,33 @@ class _ProblemPostState extends State<ProblemPost> {
         },
         backgroundColor: Colors.deepPurpleAccent[200],
         child: Icon(
-          Icons.query_builder,
+          Icons.message,
           color: Colors.white,
         ),
       ),
-      body: ListView(
-        shrinkWrap: true,
-        children: <Widget>[
-          Column(
-            children: <Widget>[
-              Padding(padding: EdgeInsets.symmetric(vertical: 15)),
-              UsersList(),
-            ],
+      body: StreamBuilder(
+            stream: Firestore.instance.collection('Problems').document(email).collection('timeValue').snapshots(),
+            builder: (context,snapshot){
+              
+              if(snapshot.hasData){
+                return ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: snapshot.data.documents.length,
+                  itemBuilder: (context, index){
+                    DocumentSnapshot documentSnapshot = snapshot.data.documents[index];
+                    while(documentSnapshot.data !=null){
+                      return GestureDetector(
+                        onTap:null ,
+                        child: DisplayProblemCard(documentSnapshot: documentSnapshot),
+                      );
+                    }
+
+                  }
+                );
+              }
+            },
           ),
-        ],
-      ),
+        
     );
   }
 }

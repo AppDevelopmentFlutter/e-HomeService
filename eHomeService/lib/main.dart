@@ -4,7 +4,6 @@ import 'package:eHomeService/chat/views/chatrooms.dart';
 import 'package:eHomeService/userSide/home_page.dart';
 import 'package:eHomeService/userSide/splashscreen.dart';
 import 'package:flutter/material.dart';
-
 import 'chat/models/user.dart';
 
 void main() {
@@ -66,31 +65,3 @@ class _MyAppState extends State<MyApp> {
 
 
 
-
-
-
-
-
-
-// import 'package:eHomeService/userSide/userMessages.dart';
-// import 'package:flutter/material.dart';
-// import 'package:eHomeService/authentiction/login.dart';
-
-// void main() {
-//   runApp(MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
-//   // This widget is the root of your application.
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Flutter Demo',
-//       theme: ThemeData(
-//         primarySwatch: Colors.blue,
-//         visualDensity: VisualDensity.adaptivePlatformDensity,
-//       ),
-//       home: LoginPage()
-//     );
-//   }
-// }

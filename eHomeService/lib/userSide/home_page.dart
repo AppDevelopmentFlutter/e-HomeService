@@ -27,13 +27,8 @@ class _HomePageState extends State<HomePage>
   String emailValue;
   String userId;
 
-  @override
-  void initState() {
-    // crudMethods.getData().then((result) {
-    //   setState(() {
-    //     usersStream = result;
-    //   });
-    // });
+
+   void initState(){
     super.initState();
     emailValue = this.widget.email;
     userId = this.widget.uid;
@@ -124,13 +119,14 @@ class _HomePageState extends State<HomePage>
                   child: Icon(Icons.exit_to_app)))
         ],
         bottom: new TabBar(
-            controller: _tabController,
-            indicatorColor: Colors.white,
-            tabs: <Widget>[
-              new Tab(text: "Problem"),
-              new Tab(text: "Chat"),
-              // new Tab(text:"Bank"),
-            ]),
+          controller: _tabController,
+          indicatorColor: Colors.white ,
+          tabs: <Widget>[
+            new Tab(text:"Problem"),
+            new Tab(text:"Description"),
+            // new Tab(text:"Bank"),
+          ]
+        ),
       ),
       body: new TabBarView(
         controller: _tabController,
