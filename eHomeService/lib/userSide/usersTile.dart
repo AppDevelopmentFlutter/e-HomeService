@@ -37,7 +37,7 @@ class UsersTile extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
                     child:CachedNetworkImage(
-                      imageUrl: imgUrl,
+                      imageUrl: imgUrl != null? imgUrl:'',
                       height: 120,
                       width: 110,
                       fit: BoxFit.fill,
@@ -62,7 +62,7 @@ class UsersTile extends StatelessWidget {
                     SizedBox(height: 9),
                     Align(
                       alignment: Alignment.center,
-                      child: Text(description.substring(startIndex, endIndex),
+                      child: Text(description.substring(startIndex, endIndex) != null? description:'',
                           textAlign: TextAlign.center, style:biggerTextStyle()),
                     ),
                     SizedBox(height: 4),

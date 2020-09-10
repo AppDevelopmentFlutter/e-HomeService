@@ -1,6 +1,7 @@
 import 'dart:core';
 import 'dart:io';
 import 'package:eHomeService/chat/services/crud.dart';
+import 'package:eHomeService/userSide/activity/problemActivity.dart';
 import 'package:eHomeService/userSide/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -15,6 +16,7 @@ import 'package:random_string/random_string.dart';
 
 class DescriptionPage extends StatefulWidget {
 final String email;
+
 
   const DescriptionPage({Key key, this.email}) : super(key: key);
   
@@ -293,7 +295,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
              // _showDialog();
              uploadStatus();
                Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => HomePage()));
+                        MaterialPageRoute(builder: (context) => ProblemPost(email: emailValue)));
             },
             child: Container(
               width: 120,
