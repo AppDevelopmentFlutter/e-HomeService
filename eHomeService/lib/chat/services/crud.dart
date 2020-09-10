@@ -13,6 +13,12 @@ class CrudMethods {
     });
   }
 
+    Future<void> Upload(problemDetails, emailValue, timeValue) async {
+    Firestore.instance.collection("Problems").document(emailValue).collection('timeValue').document(timeValue).setData(problemDetails).catchError((e) {
+      print(e.toString());
+    });
+  }
+
   // getData() async {
   //   return await Firestore.instance.collection("users").snapshots();
   // }

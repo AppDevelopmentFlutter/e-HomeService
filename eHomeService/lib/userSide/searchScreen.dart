@@ -39,7 +39,6 @@ class _SearchScreenState extends State<SearchScreen> {
               onChanged: (val) {
               //  initiateSearch(val);
               },
-              
               decoration: InputDecoration(
                 hintText: "Search",
                 // hintStyle: mediumStyle(),
@@ -57,9 +56,9 @@ class _SearchScreenState extends State<SearchScreen> {
             ),
             ),
           ]
-    ),
-          ],
           ),
+        ],
+      ),
     );
   }
 }

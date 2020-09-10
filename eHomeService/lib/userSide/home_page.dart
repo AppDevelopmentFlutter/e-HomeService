@@ -21,6 +21,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage>  with SingleTickerProviderStateMixin{
   String emailValue;
   String userId;
+
+
    void initState(){
     super.initState();
     // you can use this.widget.foo here
@@ -74,7 +76,7 @@ class _HomePageState extends State<HomePage>  with SingleTickerProviderStateMixi
           indicatorColor: Colors.white ,
           tabs: <Widget>[
             new Tab(text:"Problem"),
-            new Tab(text:"Chat"),
+            new Tab(text:"Description"),
             // new Tab(text:"Bank"),
           ]
         ),
@@ -87,14 +89,6 @@ class _HomePageState extends State<HomePage>  with SingleTickerProviderStateMixi
           new DescriptionPage(email: emailValue,),
         ],
       ),
-
-
-
-
-
-
-
-
-       );
+    );
   }
 }

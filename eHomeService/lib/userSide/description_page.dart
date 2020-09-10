@@ -78,7 +78,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
         "Phone Number": _phoneNumber,
       };
       print("crude operation");
-      crudMethods.UploadData(problemDetails,emailValue, timekey.toString() ).then((result) {
+      crudMethods.Upload(problemDetails,emailValue, timekey.toString() ).then((result) {
         print("********operation is done*****");
         Scaffold.of(context).showSnackBar(
           SnackBar(content: Text('Saved in Database')));

@@ -1,21 +1,32 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eHomeService/chat/views/chat.dart';
+import 'package:eHomeService/chat/views/chatrooms.dart';
+import 'package:eHomeService/chat/widget/widget.dart';
+import 'package:eHomeService/userSide/activity/displayproblemcard.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter/material.dart';
 
 
 class ProblemPost  extends StatefulWidget {
   final String emailId;
-
   const ProblemPost({Key key, this.emailId}) : super(key: key);
-  
   @override
   _ProblemPostState createState() => _ProblemPostState();
 }
 
 class _ProblemPostState extends State<ProblemPost> {
+  final firebaseInstance = Firestore.instance;
   String email;
 
+
+  display(){
+    firebaseInstance.collection('Problems').document(email).collection('timeValue').getDocuments().then((querySnapshot) {
+      querySnapshot.documents.forEach((element) {
+        print(element.data);
+      });
+    });
+  }
    void initState(){
     super.initState();
     // you can use this.widget.foo here
@@ -33,12 +44,33 @@ class _ProblemPostState extends State<ProblemPost> {
         },
         backgroundColor: Colors.deepPurpleAccent[200],
         child: Icon(
-          Icons.query_builder,
+          Icons.message,
           color: Colors.white,
         ),
       ),
-      body: Container(
-        child: Center(child: Text('$email ...'),),
+      body: SingleChildScrollView(
+        child: Flexible(
+          child: StreamBuilder(
+            stream: Firestore.instance.collection('Problems').document(email).collection('timeValue').snapshots(),
+            builder: (context,snapshot){
+              if(snapshot.hasData){
+                return ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: snapshot.data.documents.length,
+                  itemBuilder: (context, index){
+                    DocumentSnapshot documentSnapshot = snapshot.data.documents[index];
+                    if(documentSnapshot.data !=null){
+                      return GestureDetector(
+                        onTap:null ,
+                        child: DisplayProblemCard(documentSnapshot: documentSnapshot),
+                      );
+                    }
+                  }
+                );
+              }
+            },
+          ),
+        ),
       ),
     );
   }
