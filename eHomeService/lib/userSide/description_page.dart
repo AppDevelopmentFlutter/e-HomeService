@@ -1,7 +1,6 @@
 import 'dart:core';
 import 'dart:io';
 import 'package:eHomeService/chat/services/crud.dart';
-import 'package:eHomeService/userSide/activity/problemActivity.dart';
 import 'package:eHomeService/userSide/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -57,7 +56,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
 
   uploadStatus() async {
     print("Its uploaded");
-    if (_image != null && _image.existsSync()){
+    if (_image != null  && _image.existsSync()){
       setState(() {
         _isLoading = true;
       });
@@ -84,7 +83,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
         print("********operation is done*****");
         Scaffold.of(context).showSnackBar(
           SnackBar(content: Text('Saved in Database')));
-        print("after the snacpbar");
+        print("after the snackbar");
       });
       // });
     } else {}
@@ -257,8 +256,8 @@ class _DescriptionPageState extends State<DescriptionPage> {
             onTap: () {
              // _showDialog();
              uploadStatus();
-               Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => ProblemPost(email: emailValue)));
+              //  Navigator.push(context,
+              //           MaterialPageRoute(builder: (context) => ProblemPost(email: emailValue)));
             },
             child: Container(
               width: 120,

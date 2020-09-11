@@ -14,7 +14,7 @@ class CrudMethods {
     });
   }
 
-  getData() async {
-    return await Firestore.instance.collection("Problem").snapshots();
+getData() async {
+    return  Firestore.instance.collection('Problems').document('email').collection('timeValue').snapshots();
   }
 }
