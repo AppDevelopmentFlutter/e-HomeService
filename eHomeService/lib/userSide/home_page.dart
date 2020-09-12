@@ -29,6 +29,7 @@ class _HomePageState extends State<HomePage>
 
    void initState(){
     super.initState();
+    
     emailValue = this.widget.email;
     userId = this.widget.uid;
     _tabController = new TabController(length: 2, vsync: this, initialIndex: 0);

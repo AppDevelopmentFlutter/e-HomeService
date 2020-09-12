@@ -1,3 +1,4 @@
+import 'package:eHomeService/chat/views/storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 class HelperFunctions{
 
@@ -25,7 +26,10 @@ class HelperFunctions{
   /// fetching data from sharedpreference
 
   static Future<bool> getUserLoggedInSharedPreference() async{
+
     SharedPreferences preferences = await SharedPreferences.getInstance();
+    // print("%%%%%%%% ");
+    // print(preferences.getString(sharedPreferenceUserLoggedInKey));
     return await preferences.getBool(sharedPreferenceUserLoggedInKey);
   }
 
@@ -38,5 +42,17 @@ class HelperFunctions{
     SharedPreferences preferences = await SharedPreferences.getInstance();
     return await preferences.getString(sharedPreferenceUserEmailKey);
   }
+
+  static Future<String> addStringToSF(email) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  prefs.setString('stringValue', email);
+} 
+
+getStringvalue() async{
+  SharedPreferences sharedPreferences= await SharedPreferences.getInstance();
+  String val= sharedPreferences.getString('stringValue');
+  print("hiiiiiiiiii" +val);
+  return null;
+}
 
 }

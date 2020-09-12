@@ -9,6 +9,7 @@ import 'package:eHomeService/chat/widget/widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eHomeService/userSide/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:eHomeService/chat/views/storage.dart';
 
 class SignIn extends StatefulWidget {
   final Function toggleView;
@@ -33,6 +34,8 @@ class _SignInState extends State<SignIn> {
     if (formKey.currentState.validate()) {
       setState(() {
         isLoading = true;
+         print("bdcbdbbbdg    "+emailEditingController.text);
+         Storage.email=emailEditingController.text;
       });
 
       await authService
@@ -74,42 +77,46 @@ class _SignInState extends State<SignIn> {
               child: Center(child: CircularProgressIndicator()),
             )
           : Container(
-              padding: EdgeInsets.symmetric(horizontal: 24,vertical: 70),
               child: ListView(
                 children: [
-                  Spacer(),
-                  Form(
-                    key: formKey,
-                    child: Column(
-                      children: [
-                        TextFormField(
-                          validator: (val) {
-                            return RegExp(
-                                        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                    .hasMatch(val)
-                                ? null
-                                : "Please Enter Correct Email";
-                          },
-                          controller: emailEditingController,
-                          style: simpleTextStyle(),
-                          decoration: textFieldInputDecoration("email"),
-                        ),
-                        TextFormField(
-                          obscureText: true,
-                          validator: (val) {
-                            return val.length > 6
-                                ? null
-                                : "Enter Password 6+ characters";
-                          },
-                          style: simpleTextStyle(),
-                          controller: passwordEditingController,
-                          decoration: textFieldInputDecoration("password"),
-                        ),
-                      ],
+                  
+                  Padding(
+                    padding: EdgeInsets.only(left:20,right:20,top: MediaQuery.of(context).size.height/3.4),
+                    child: Form(
+                      key: formKey,
+                      child: Column(
+                        children: [
+                          TextFormField(
+                            validator: (val) {
+                              return RegExp(
+                                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                      .hasMatch(val)
+                                  ? null
+                                  : "Please Enter Correct Email";
+                            },
+                            controller: emailEditingController,
+                           
+                            style: simpleTextStyle(),
+                            decoration: textFieldInputDecoration("email"),
+                          
+                          ),
+                          TextFormField(
+                            obscureText: true,
+                            validator: (val) {
+                              return val.length > 6
+                                  ? null
+                                  : "Enter Password 6+ characters";
+                            },
+                            style: simpleTextStyle(),
+                            controller: passwordEditingController,
+                            decoration: textFieldInputDecoration("password"),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   SizedBox(
-                    height: 16,
+                    height: 20,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -138,33 +145,39 @@ class _SignInState extends State<SignIn> {
                     onTap: () {
                       signIn();
                     },
-                    child: Container(
-                      padding: EdgeInsets.symmetric(vertical: 16),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          gradient: gradientColors()),
-                      width: MediaQuery.of(context).size.width,
-                      child: Text(
-                        "Sign In",
-                        style: biggerTextStyle(),
-                        textAlign: TextAlign.center,
+                    child: Padding(
+                       padding: EdgeInsets.only(left:20,right:20,),
+                      child: Container(
+                        padding: EdgeInsets.symmetric(vertical: 16),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            gradient: gradientColors()),
+                        width: MediaQuery.of(context).size.width,
+                        child: Text(
+                          "Sign In",
+                          style: biggerTextStyle(),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
                   ),
                   SizedBox(
                     height: 16,
                   ),
-                  Container(
-                    padding: EdgeInsets.symmetric(vertical: 16),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        color: Colors.white),
-                    width: MediaQuery.of(context).size.width,
-                    child: Text(
-                      "Sign In with Google",
-                      style:
-                          TextStyle(fontSize: 17, color: CustomTheme.textColor),
-                      textAlign: TextAlign.center,
+                  Padding(
+                    padding: EdgeInsets.only(left:20,right:20,),
+                    child: Container(
+                      padding: EdgeInsets.symmetric(vertical: 16),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          color: Colors.white),
+                      width: MediaQuery.of(context).size.width,
+                      child: Text(
+                        "Sign In with Google",
+                        style:
+                            TextStyle(fontSize: 17, color: CustomTheme.textColor),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   ),
                   SizedBox(
