@@ -5,7 +5,10 @@ import 'package:eHomeService/chat/views/storage.dart';
 import 'package:eHomeService/userSide/home_page.dart';
 import 'package:eHomeService/userSide/splashscreen.dart';
 import 'package:flutter/material.dart';
+import 'chat/helper/helperfunctions.dart';
+import 'chat/helper/helperfunctions.dart';
 import 'chat/models/user.dart';
+import 'userSide/home_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,13 +23,28 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
 
   bool userIsLoggedIn;
+  String userEmail;
 
   @override
   void initState() {
     print("babbxwxnmnfjvnds   "+Storage.email);
     getLoggedInState();
-    super.initState();
+    getEmailId();
     
+    super.initState();
+    print('######=> $userEmail');
+    
+  }
+  getEmailId() async{
+
+      await HelperFunctions.getUserEmailSharedPreference().then((value) => {
+        setState((){
+
+          userEmail = value;
+          print('---------------=> $userEmail');
+        })
+      });
+
   }
 
   getLoggedInState() async {
@@ -39,13 +57,13 @@ class _MyAppState extends State<MyApp> {
 
 String email;
 
-  getEmailValue() async {
-    await HelperFunctions.getUserLoggedInSharedPreference().then((value){
-      setState(() {
-      //  email = value;
-      });
-    });
-  }
+  // getEmailValue() async {
+  //   await HelperFunctions.getUserLoggedInSharedPreference().then((value){
+  //     setState(() {
+  //    email = value;
+  //     });
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -59,9 +77,7 @@ String email;
         fontFamily: "OverpassRegular",
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: userIsLoggedIn != null ?  userIsLoggedIn ?Storage.email != null?  HomePage(
-        
-        email: Storage.email ,uid:'144'):Container(child:Text('$Storage.email')) : Authenticate()
+      home: userIsLoggedIn != null ?  userIsLoggedIn ?   HomePage(email:userEmail ,uid: 'fff',): Authenticate()
           : Container(
         child: Center(
           child: Authenticate(),
@@ -72,10 +88,4 @@ String email;
 }
 
 
-
-
-
-
-
-
-
+// HomePage(email:userEmail ,uid: 'fff',)
