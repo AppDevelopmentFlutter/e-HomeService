@@ -56,11 +56,10 @@ class UsersTile extends StatelessWidget {
                               fontWeight: FontWeight.bold),
                         ),
                       ),
-                
+
                     SizedBox(height: 9),
                     Align(
                       alignment: Alignment.center,
-                     
                         child: Text(description,
                             textAlign: TextAlign.center,
                             style: biggerTextStyle()),

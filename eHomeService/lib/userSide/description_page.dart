@@ -34,7 +34,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
   TextEditingController _textFieldController =TextEditingController();
   CrudMethods crudMethods = new CrudMethods();
 
-  //TextEditingController _textFieldController =TextEditingController();
+
   var timekey = new DateTime.now();
   File _image;
   String _url;
@@ -65,8 +65,8 @@ class _DescriptionPageState extends State<DescriptionPage> {
           .child("Post Image")
           .child("${randomAlphaNumeric(9)}.jpg");
     final StorageUploadTask task = postImageRef.putFile(_image);
-        var downloadurl = await (await task.onComplete).ref.getDownloadURL();
-        print("************************");
+      var downloadurl = await (await task.onComplete).ref.getDownloadURL();
+      print("************************");
       print("This is url $downloadurl");
       print("this is the url of image");
       print("-------------------------------");
@@ -81,11 +81,9 @@ class _DescriptionPageState extends State<DescriptionPage> {
       print("crude operation");
       crudMethods.Upload(problemDetails,emailValue, timekey.toString() ).then((result) {
         print("********operation is done*****");
-        Scaffold.of(context).showSnackBar(
-          SnackBar(content: Text('Saved in Database')));
+        Scaffold.of(context).showSnackBar(SnackBar(content: Text('Saved in Database')));
         print("after the snackbar");
       });
-      // });
     } else {}
   }
 
@@ -101,7 +99,6 @@ class _DescriptionPageState extends State<DescriptionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: SingleChildScrollView(
         child: Form(
           key: formKey,
@@ -208,6 +205,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
             Padding(
             padding: EdgeInsets.all(9),
             child: TextFormField(
+              maxLength: 5,
                 onSaved: (value){
                       return _description=value;
                     },
