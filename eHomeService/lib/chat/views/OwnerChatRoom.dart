@@ -117,7 +117,7 @@ class ChatRoomsTile extends StatelessWidget {
               decoration: BoxDecoration(
                   color: CustomTheme.colorAccent,
                   borderRadius: BorderRadius.circular(30)),
-              child: Text(userName.substring(0, 1),
+              child: Text(userName.substring(0,0),
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Colors.white,

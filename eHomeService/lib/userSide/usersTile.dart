@@ -19,7 +19,7 @@ class UsersTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         margin: EdgeInsets.only(bottom: 16),
-        height: 92,
+        height: 130,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             border: Border.all(color: Colors.grey, width: 2)),
@@ -41,37 +41,39 @@ class UsersTile extends StatelessWidget {
                     ),
                   ),
                 ),
-                Column(
-                  children: <Widget>[
-                    SizedBox(height: 4),
-                    Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        problem,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontFamily: "GentiumBasic",
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    SizedBox(height: 9),
-                    Align(
-                      alignment: Alignment.center,
-                      child: Text(description,
+                Expanded(
+                  child: Column(
+                    children: <Widget>[
+                      SizedBox(height: 8),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          problem,
                           textAlign: TextAlign.center,
-                          style: biggerTextStyle()),
-                    ),
-                    SizedBox(height: 4),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: Text(
-                        mobileno,
-                        style: biggerTextStyle(),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontFamily: "GentiumBasic",
+                              fontWeight: FontWeight.bold),
+                        ),
                       ),
-                    ),
-                  ],
+                      SizedBox(height: 9),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Text(description,
+                            textAlign: TextAlign.center,
+                            style: biggerTextStyle()),
+                      ),
+                      SizedBox(height: 10),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          mobileno,
+                          style: biggerTextStyle(),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 Align(
                   alignment: Alignment.center,

@@ -77,6 +77,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
         "ImageUrl":  downloadurl,
         "Address": _address,
         "Phone Number": _phoneNumber,
+        "Email":emailValue,
       };
       print("crude operation");
       crudMethods.Upload(problemDetails,emailValue, timekey.toString() ).then((result) {
@@ -183,6 +184,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
             Padding(
               padding: EdgeInsets.all(9),
               child: TextFormField(
+                 maxLength: 10,
                 onSaved: (value){
                       return _phoneNumber=value;
                     },
@@ -205,7 +207,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
             Padding(
             padding: EdgeInsets.all(9),
             child: TextFormField(
-              maxLength: 5,
+              //maxLength: 20,
                 onSaved: (value){
                       return _description=value;
                     },

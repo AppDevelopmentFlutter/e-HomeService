@@ -67,12 +67,13 @@ class _SignUpState extends State<SignUp> {
                   Widget build(BuildContext context) {
                     return Scaffold(
                       appBar: appBarMain(context),
-                      body: isLoading ? Container(child: Center(child: CircularProgressIndicator(),),) :  Container(
-                        padding: EdgeInsets.symmetric(horizontal: 24),
+                      body: isLoading ? Container(child: Center(child: CircularProgressIndicator(),),) 
+                      :  Container(
                         child: ListView(
                           children: [
-                            Spacer(),
-                            Form(
+                           Padding(padding: EdgeInsets.only(left:20,right:20,
+                           top:MediaQuery.of(context).size.height/3.69),
+                           child: Form(
                               key: formKey,
                               child: Column(
                                 children: [
@@ -106,38 +107,45 @@ class _SignUpState extends State<SignUp> {
                                 ],
                               ),
                             ),
+                           ),
                             SizedBox(
-                              height: 16,
+                              height: 25,
                             ),
                             GestureDetector(
                               onTap: (){
                                 singUp();
                               },
-                              child: Container(
-                                padding: EdgeInsets.symmetric(vertical: 16),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(30),
-                                    gradient: gradientColors()),
-                                width: MediaQuery.of(context).size.width,
-                                child: Text(
-                                  "Sign Up",
-                                  style: biggerTextStyle(),
-                                  textAlign: TextAlign.center,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal:20),
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(vertical: 16),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(30),
+                                      gradient: gradientColors()),
+                                  width: MediaQuery.of(context).size.width,
+                                  child: Text(
+                                    "Sign Up",
+                                    style: biggerTextStyle(),
+                                    textAlign: TextAlign.center,
+                                  ),
                                 ),
                               ),
                             ),
                             SizedBox(
                               height: 16,
                             ),
-                            Container(
-                              padding: EdgeInsets.symmetric(vertical: 16),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(30), color: Colors.white),
-                              width: MediaQuery.of(context).size.width,
-                              child: Text(
-                                "Sign Up with Google",
-                                style: TextStyle(fontSize: 17, color: CustomTheme.textColor),
-                                textAlign: TextAlign.center,
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal:20),
+                              child: Container(
+                                padding: EdgeInsets.symmetric(vertical: 16),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30), color: Colors.white),
+                                width: MediaQuery.of(context).size.width,
+                                child: Text(
+                                  "Sign Up with Google",
+                                  style: TextStyle(fontSize: 17, color: CustomTheme.textColor),
+                                  textAlign: TextAlign.center,
+                                ),
                               ),
                             ),
                             SizedBox(

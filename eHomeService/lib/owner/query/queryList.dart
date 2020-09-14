@@ -23,6 +23,7 @@ class _QueryState extends State<Query> {
   CrudMethods crudMethods = new CrudMethods();
   Stream usersStream;
   Widget UsersList() {
+     print("Hello,this is query page");
     return SingleChildScrollView(
       physics: ClampingScrollPhysics(),
       child: Container(
