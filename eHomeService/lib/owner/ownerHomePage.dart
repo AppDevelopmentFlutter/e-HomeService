@@ -1,6 +1,7 @@
 import 'package:eHomeService/chat/helper/authenticate.dart';
 import 'package:eHomeService/chat/services/auth.dart';
 import 'package:eHomeService/chat/views/OwnerChatRoom.dart';
+import 'package:eHomeService/owner/query/queryList.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
 
@@ -61,9 +62,7 @@ class _OwnerHomePageState extends State<OwnerHomePage> with SingleTickerProvider
       body: new TabBarView(
         controller: _tabController,
         children: [
-          Container(
-            child: Text('H'),
-          ),
+          Query(),
           ChatRoomOwner(),
         ],
       ),
