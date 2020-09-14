@@ -1,7 +1,6 @@
 import 'package:eHomeService/chat/helper/authenticate.dart';
 import 'package:eHomeService/chat/services/auth.dart';
-import 'package:eHomeService/chat/views/chat.dart';
-import 'package:eHomeService/chat/views/chatrooms.dart';
+import 'package:eHomeService/chat/views/OwnerChatRoom.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
 
@@ -65,7 +64,7 @@ class _OwnerHomePageState extends State<OwnerHomePage> with SingleTickerProvider
           Container(
             child: Text('H'),
           ),
-          ChatRoom(),
+          ChatRoomOwner(),
         ],
       ),
     );

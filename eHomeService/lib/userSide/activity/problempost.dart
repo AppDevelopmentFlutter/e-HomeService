@@ -1,5 +1,6 @@
 import 'package:eHomeService/chat/services/crud.dart';
 import 'package:eHomeService/chat/views/chat.dart';
+import 'package:eHomeService/chat/views/OwnerChatRoom.dart';
 import 'package:eHomeService/userSide/usersTile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eHomeService/chat/views/chat.dart';
@@ -7,7 +8,7 @@ import 'package:eHomeService/chat/views/chatrooms.dart';
 import 'package:eHomeService/chat/widget/widget.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
+
 
 class ProblemPost extends StatefulWidget {
   final String emailId;
@@ -71,7 +72,7 @@ class _ProblemPostState extends State<ProblemPost> {
       floatingActionButton: new FloatingActionButton(
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => Chat()));
+              context, MaterialPageRoute(builder: (context) => ChatRoom()));
         },
         backgroundColor: Colors.deepPurpleAccent[200],
         child: Icon(
