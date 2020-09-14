@@ -7,6 +7,7 @@ import 'package:eHomeService/chat/views/chatrooms.dart';
 import 'package:eHomeService/chat/views/forgot_password.dart';
 import 'package:eHomeService/chat/widget/widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:eHomeService/owner/ownerHomePage.dart';
 import 'package:eHomeService/userSide/home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -50,12 +51,19 @@ class _SignInState extends State<SignIn> {
               userInfoSnapshot.documents[0].data["userEmail"]);
 
           Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => HomePage(
-              email: emailEditingController.text,
-              uid: authService.userId,
-            )));
-              // context, MaterialPageRoute(builder: (context) => ChatRoom()));
-        } else {
+            context, MaterialPageRoute(builder: (context) {
+              if(userInfoSnapshot.documents[0].data["userEmail"] == 'owner@gmail.com'){
+                return OwnerHomePage();
+              }
+              else{
+                return HomePage(
+                  email: emailEditingController.text,
+                );
+              }
+            })
+          );
+        }
+        else {
           setState(() {
             isLoading = false;
             //show snackbar
