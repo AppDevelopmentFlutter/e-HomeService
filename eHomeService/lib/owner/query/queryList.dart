@@ -10,39 +10,28 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
 
-class ProblemPost extends StatefulWidget {
-  final String emailId;
-
-  const ProblemPost({
-    Key key,
-    this.emailId,
-  }) : super(key: key);
+class Query extends StatefulWidget {
 
   @override
-  _ProblemPostState createState() => _ProblemPostState();
+  _QueryState createState() => _QueryState();
 }
 
-class _ProblemPostState extends State<ProblemPost> {
+class _QueryState extends State<Query> {
   final firebaseInstance = Firestore.instance;
 
 
   CrudMethods crudMethods = new CrudMethods();
   Stream usersStream;
   Widget UsersList() {
-    print("Hello this is my email"+widget.emailId);
     return SingleChildScrollView(
       physics: ClampingScrollPhysics(),
       child: Container(
           child: Column(children: <Widget>[
             StreamBuilder<QuerySnapshot>(
               stream:Firestore.instance
-                .collection('Problems')
-                .document(widget.emailId)
-                .collection('timeValue')
-                .snapshots(),
+                .collection('Problems').snapshots(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
-                  print("Hello email" +widget.emailId);
                   return CircularProgressIndicator();
                 }
                 else {
@@ -53,11 +42,8 @@ class _ProblemPostState extends State<ProblemPost> {
                       itemCount: snapshot.data.documents.length,
                       itemBuilder: (context, index) {
                         DocumentSnapshot documentSnapshot = snapshot.data.documents[index];
-                        return UsersTile(
-                          imgUrl: documentSnapshot['ImageUrl'],
-                          problem: documentSnapshot['Problem'],
-                          description: documentSnapshot['Description'],
-                          mobileno: documentSnapshot['Phone Number'],
+                        return Container(
+                          child: Text('$documentSnapshot'),
                         );
                     });
                   }

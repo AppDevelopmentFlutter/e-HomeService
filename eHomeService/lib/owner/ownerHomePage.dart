@@ -1,44 +1,27 @@
 import 'package:eHomeService/chat/helper/authenticate.dart';
 import 'package:eHomeService/chat/services/auth.dart';
-import 'package:eHomeService/chat/services/crud.dart';
-import 'package:eHomeService/chat/views/chat.dart';
-import 'package:eHomeService/chat/views/signin.dart';
-import 'package:eHomeService/chat/widget/widget.dart';
-import 'package:eHomeService/userSide/activity/problempost.dart';
-import 'package:eHomeService/userSide/usersTile.dart';
+import 'package:eHomeService/chat/views/OwnerChatRoom.dart';
+import 'package:eHomeService/owner/query/queryList.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
-import 'package:eHomeService/userSide/widgets/widgets.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'description_page.dart';
 
-class HomePage extends StatefulWidget {
-  final String email;
-
-  const HomePage({Key key, this.email}) : super(key: key);
+class OwnerHomePage extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _OwnerHomePageState createState() => _OwnerHomePageState();
 }
 
-class _HomePageState extends State<HomePage>
-    with SingleTickerProviderStateMixin {
-  String emailValue;
+class _OwnerHomePageState extends State<OwnerHomePage> with SingleTickerProviderStateMixin {
 
+
+  @override
 
    void initState(){
     super.initState();
-    
-    emailValue = this.widget.email;
     _tabController = new TabController(length: 2, vsync: this, initialIndex: 0);
-    print("This is my email:"+emailValue);
   }
-
   TabController _tabController;
-
   TextEditingController editingController = TextEditingController();
-
   AuthService auth = new AuthService();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,8 +53,8 @@ class _HomePageState extends State<HomePage>
           controller: _tabController,
           indicatorColor: Colors.white ,
           tabs: <Widget>[
-            new Tab(text:"Problem"),
-            new Tab(text:"Description"),
+            new Tab(text:"Query"),
+            new Tab(text:"Contact"),
             // new Tab(text:"Bank"),
           ]
         ),
@@ -79,8 +62,8 @@ class _HomePageState extends State<HomePage>
       body: new TabBarView(
         controller: _tabController,
         children: [
-          new ProblemPost(emailId: emailValue),
-          new DescriptionPage(email: emailValue,),
+          Query(),
+          ChatRoomOwner(),
         ],
       ),
     );

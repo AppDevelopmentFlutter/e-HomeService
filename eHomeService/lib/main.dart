@@ -2,6 +2,7 @@ import 'package:eHomeService/chat/helper/authenticate.dart';
 import 'package:eHomeService/chat/helper/helperfunctions.dart';
 import 'package:eHomeService/chat/views/chatrooms.dart';
 import 'package:eHomeService/chat/views/storage.dart';
+import 'package:eHomeService/owner/ownerHomePage.dart';
 import 'package:eHomeService/userSide/home_page.dart';
 import 'package:eHomeService/userSide/splashscreen.dart';
 import 'package:flutter/material.dart';
@@ -73,18 +74,14 @@ class _MyAppState extends State<MyApp> {
         fontFamily: "OverpassRegular",
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: userIsLoggedIn != null
-          ? userIsLoggedIn
-              ? HomePage(
-                  email: userEmail,
-                  uid: 'fff',
-                )
-              : Authenticate()
-          : Container(
-              child: Center(
-                child: Authenticate(),
-              ),
-            ),
+      home: userIsLoggedIn != null ?  userIsLoggedIn ?  userEmail == 'owner@gmaiil.com'?
+        OwnerHomePage():HomePage(email:userEmail)
+        : Authenticate()
+        : Container(
+        child: Center(
+          child: Authenticate(),
+        ),
+      ),
     );
   }
 }

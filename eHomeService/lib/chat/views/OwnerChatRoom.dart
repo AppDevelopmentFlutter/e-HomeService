@@ -9,12 +9,12 @@ import 'package:eHomeService/chat/views/search.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_widgets/gradient_widgets.dart';
 
-class ChatRoom extends StatefulWidget {
+class ChatRoomOwner extends StatefulWidget {
   @override
-  _ChatRoomState createState() => _ChatRoomState();
+  _ChatRoomOwnerState createState() => _ChatRoomOwnerState();
 }
 
-class _ChatRoomState extends State<ChatRoom> {
+class _ChatRoomOwnerState extends State<ChatRoomOwner> {
   Stream chatRooms;
 
   Widget chatRoomsList() {
@@ -33,14 +33,10 @@ class _ChatRoomState extends State<ChatRoom> {
                         .replaceAll(Constants.myName, ""),
                     chatRoomId: snapshot.data.documents[index].data["chatRoomId"],
                   );
-                },
-                )
+                })
             : Container();
       },
-    
     );
-
-   
   }
 
   @override
@@ -63,22 +59,22 @@ class _ChatRoomState extends State<ChatRoom> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor:  Colors.black,
-        title:  Row(
-          children: <Widget>[
-            GradientText("E-HomeServices",
-                gradient: LinearGradient(colors: [
-                  Colors.deepPurpleAccent[200],
-                  Colors.redAccent[200]
-                ]),
-                style: TextStyle(fontSize: 22, fontFamily: "GentiumBasic"),
-                textAlign: TextAlign.center)
-          ],
-       ),
-        elevation: 0.0,
-        centerTitle: false,
-       ),
+      // appBar: AppBar(
+      //   backgroundColor:  Colors.black,
+      //   title:  Row(
+      //     children: <Widget>[
+      //       GradientText("E-HomeServices",
+      //           gradient: LinearGradient(colors: [
+      //             Colors.deepPurpleAccent[200],
+      //             Colors.redAccent[200]
+      //           ]),
+      //           style: TextStyle(fontSize: 22, fontFamily: "GentiumBasic"),
+      //           textAlign: TextAlign.center)
+      //     ],
+      //  ),
+      //   elevation: 0.0,
+      //   centerTitle: false,
+      //  ),
       body: Container(
         child: chatRoomsList(),
       ),
