@@ -14,9 +14,8 @@ import 'description_page.dart';
 
 class HomePage extends StatefulWidget {
   final String email;
-  final String uid;
 
-  const HomePage({Key key, this.email, this.uid}) : super(key: key);
+  const HomePage({Key key, this.email}) : super(key: key);
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -24,13 +23,11 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   String emailValue;
-  String userId;
 
 
    void initState(){
     super.initState();
     emailValue = this.widget.email;
-    userId = this.widget.uid;
     _tabController = new TabController(length: 2, vsync: this, initialIndex: 0);
     print("This is my email:"+emailValue);
   }
@@ -56,7 +53,7 @@ class _HomePageState extends State<HomePage>
                 style: TextStyle(fontSize: 22, fontFamily: "GentiumBasic"),
                 textAlign: TextAlign.center)
           ],
-        ),
+       ),
         actions: [
           GestureDetector(
               onTap: () {
@@ -82,9 +79,7 @@ class _HomePageState extends State<HomePage>
         controller: _tabController,
         children: [
           new ProblemPost(emailId: emailValue),
-          new DescriptionPage(
-            email: emailValue,
-          ),
+          new DescriptionPage(email: emailValue,),
         ],
       ),
     );
