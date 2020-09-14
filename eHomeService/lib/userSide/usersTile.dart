@@ -46,36 +46,31 @@ class UsersTile extends StatelessWidget {
                     SizedBox(height: 4),
                     Align(
                       alignment: Alignment.center,
-                        child: Text(
-                          problem,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontFamily: "GentiumBasic",
-                              fontWeight: FontWeight.bold),
-                        ),
+                      child: Text(
+                        problem,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontFamily: "GentiumBasic",
+                            fontWeight: FontWeight.bold),
                       ),
-                
+                    ),
                     SizedBox(height: 9),
                     Align(
                       alignment: Alignment.center,
-                     
-                        child: Text(description,
-                            textAlign: TextAlign.center,
-                            style: biggerTextStyle()),
-                      ),
-                   
+                      child: Text(description,
+                          textAlign: TextAlign.center,
+                          style: biggerTextStyle()),
+                    ),
                     SizedBox(height: 4),
                     Align(
                       alignment: Alignment.centerRight,
-                    
-                                              child: Text(
-                          mobileno,
-                          style: biggerTextStyle(),
-                        ),
+                      child: Text(
+                        mobileno,
+                        style: biggerTextStyle(),
                       ),
-                  
+                    ),
                   ],
                 ),
                 Align(
@@ -87,7 +82,7 @@ class UsersTile extends StatelessWidget {
                       child: Icon(
                         Icons.thumb_up,
                         color: Colors.white,
-                       // size: 40,
+                        // size: 40,
                       ),
                       color: Colors.green,
                       shape: RoundedRectangleBorder(

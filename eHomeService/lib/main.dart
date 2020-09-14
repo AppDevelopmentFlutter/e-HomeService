@@ -21,41 +21,37 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   bool userIsLoggedIn;
   String userEmail;
 
   @override
   void initState() {
-    print("babbxwxnmnfjvnds   "+Storage.email);
+    print("babbxwxnmnfjvnds   " + Storage.email);
     getLoggedInState();
     getEmailId();
-    
+
     super.initState();
     print('######=> $userEmail');
-    
   }
-  getEmailId() async{
 
-      await HelperFunctions.getUserEmailSharedPreference().then((value) => {
-        setState((){
-
-          userEmail = value;
-          print('---------------=> $userEmail');
-        })
-      });
-
+  getEmailId() async {
+    await HelperFunctions.getUserEmailSharedPreference().then((value) => {
+          setState(() {
+            userEmail = value;
+            print('---------------=> $userEmail');
+          })
+        });
   }
 
   getLoggedInState() async {
-    await HelperFunctions.getUserLoggedInSharedPreference().then((value){
+    await HelperFunctions.getUserLoggedInSharedPreference().then((value) {
       setState(() {
-        userIsLoggedIn  = value;
+        userIsLoggedIn = value;
       });
     });
   }
 
-String email;
+  String email;
 
   // getEmailValue() async {
   //   await HelperFunctions.getUserLoggedInSharedPreference().then((value){
@@ -77,15 +73,19 @@ String email;
         fontFamily: "OverpassRegular",
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: userIsLoggedIn != null ?  userIsLoggedIn ?   HomePage(email:userEmail ,uid: 'fff',): Authenticate()
+      home: userIsLoggedIn != null
+          ? userIsLoggedIn
+              ? HomePage(
+                  email: userEmail,
+                  uid: 'fff',
+                )
+              : Authenticate()
           : Container(
-        child: Center(
-          child: Authenticate(),
-        ),
-      ),
+              child: Center(
+                child: Authenticate(),
+              ),
+            ),
     );
   }
 }
 
-
-// HomePage(email:userEmail ,uid: 'fff',)

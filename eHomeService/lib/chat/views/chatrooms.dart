@@ -32,10 +32,14 @@ class _ChatRoomState extends State<ChatRoom> {
                         .replaceAll(Constants.myName, ""),
                     chatRoomId: snapshot.data.documents[index].data["chatRoomId"],
                   );
-                })
+                },
+                )
             : Container();
       },
+    
     );
+
+   
   }
 
   @override
