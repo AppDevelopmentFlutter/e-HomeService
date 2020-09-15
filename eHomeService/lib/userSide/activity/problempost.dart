@@ -9,7 +9,6 @@ import 'package:eHomeService/chat/widget/widget.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
-
 class ProblemPost extends StatefulWidget {
   final String emailId;
 
@@ -24,47 +23,46 @@ class ProblemPost extends StatefulWidget {
 
 class _ProblemPostState extends State<ProblemPost> {
   final firebaseInstance = Firestore.instance;
-
-
+ 
   CrudMethods crudMethods = new CrudMethods();
   Stream usersStream;
+
   Widget UsersList() {
-    print("Hello this is my email"+widget.emailId);
+    print("Hello this is my email: " + widget.emailId);
     return SingleChildScrollView(
       physics: ClampingScrollPhysics(),
       child: Container(
           child: Column(children: <Widget>[
-            StreamBuilder<QuerySnapshot>(
-              stream:Firestore.instance
-                .collection('Problems')
-                .document(widget.emailId)
-                .collection('timeValue')
-                .snapshots(),
-              builder: (context, snapshot) {
-                if (!snapshot.hasData) {
-                  print("Hello email" +widget.emailId);
-                  return CircularProgressIndicator();
-                }
-                else {
-                  return ListView.builder(
-                      physics: ClampingScrollPhysics(),
-                      shrinkWrap: true,
-                      padding: EdgeInsets.symmetric(horizontal: 16),
-                      itemCount: snapshot.data.documents.length,
-                      itemBuilder: (context, index) {
-                        DocumentSnapshot documentSnapshot = snapshot.data.documents[index];
-                        return UsersTile(
-                          imgUrl: documentSnapshot['ImageUrl'],
-                          problem: documentSnapshot['Problem'],
-                          description: documentSnapshot['Description'],
-                          mobileno: documentSnapshot['Phone Number'],
-                        );
+        StreamBuilder<QuerySnapshot>(
+            stream: Firestore.instance
+        .collection("Problems")
+        .where("Email", isEqualTo: widget.emailId)
+        .snapshots(),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) {
+                print("Hello email: " + widget.emailId);
+                return CircularProgressIndicator();
+              } else {
+                return ListView.builder(
+                    physics: ClampingScrollPhysics(),
+                    shrinkWrap: true,
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    itemCount: snapshot.data.documents.length,
+                    itemBuilder: (context, index) {
+                      DocumentSnapshot documentSnapshot =
+                          snapshot.data.documents[index];
+                      return UsersTile(
+                        imgUrl: documentSnapshot['ImageUrl'],
+                        problem: documentSnapshot['Problem'],
+                        description: documentSnapshot['Description'],
+                        mobileno: documentSnapshot['Phone Number'],
+                      );
                     });
-                  }
-              })
-         ])),
-      );
-    }
+              }
+            })
+      ])),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +78,6 @@ class _ProblemPostState extends State<ProblemPost> {
           color: Colors.white,
         ),
       ),
-
       body: ListView(
         shrinkWrap: true,
         children: <Widget>[

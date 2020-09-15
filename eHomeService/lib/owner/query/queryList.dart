@@ -23,7 +23,7 @@ class _QueryState extends State<Query> {
   CrudMethods crudMethods = new CrudMethods();
   Stream usersStream;
   Widget UsersList() {
-     print("Hello,this is query page");
+    print("hello Im the owner");
     return SingleChildScrollView(
       physics: ClampingScrollPhysics(),
       child: Container(
@@ -43,9 +43,12 @@ class _QueryState extends State<Query> {
                       itemCount: snapshot.data.documents.length,
                       itemBuilder: (context, index) {
                         DocumentSnapshot documentSnapshot = snapshot.data.documents[index];
-                        return Container(
-                          child: Text('$documentSnapshot'),
-                        );
+                        return UsersTile(
+                        imgUrl: documentSnapshot['ImageUrl'],
+                        problem: documentSnapshot['Problem'],
+                        description: documentSnapshot['Description'],
+                        mobileno: documentSnapshot['Phone Number'],
+                      );
                     });
                   }
               })
