@@ -82,7 +82,9 @@ class _SearchState extends State<Search> {
                 userName,
                 style: TextStyle(
                     color: Colors.white,
-                    fontSize: 16
+                    fontSize: 18,
+                    letterSpacing: 0.5,
+                    fontWeight: FontWeight.bold
                 ),
               ),
               Text(
@@ -102,7 +104,7 @@ class _SearchState extends State<Search> {
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 12,vertical: 8),
               decoration: BoxDecoration(
-                  color: Colors.blue,
+                  color: Colors.deepPurpleAccent,
                   borderRadius: BorderRadius.circular(24)
               ),
               child: Text("Message",
@@ -154,10 +156,10 @@ class _SearchState extends State<Search> {
                       controller: searchEditingController,
                       style: simpleTextStyle(),
                       decoration: InputDecoration(
-                        hintText: "search username ...",
+                        hintText: "Search username ...",
                         hintStyle: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
+                          color: Colors.grey[50],
+                          fontSize: 17,
                         ),
                         border: InputBorder.none
                       ),

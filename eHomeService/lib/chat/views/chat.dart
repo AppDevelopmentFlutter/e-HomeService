@@ -85,7 +85,7 @@ class _ChatState extends State<Chat> {
               alignment: Alignment.bottomCenter,
               width: MediaQuery.of(context).size.width,
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+                padding: EdgeInsets.symmetric(horizontal: 18, vertical: 18),
                 color: Color(0x54FFFFFF),
                 child: Row(
                   children: [
@@ -148,14 +148,14 @@ class MessageTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(
-          top: 8, bottom: 8, left: sendByMe ? 0 : 24, right: sendByMe ? 24 : 0),
+          top: 5, bottom: 5, left: sendByMe ? 0 : 24, right: sendByMe ? 24 : 0),
            margin: EdgeInsets.symmetric(vertical:8),
       width: MediaQuery.of(context).size.width,
       alignment: sendByMe ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
         // margin:
         //     sendByMe ? EdgeInsets.only(left: 30) : EdgeInsets.only(right: 30),
-         padding: EdgeInsets.only(top: 17, bottom: 17, left: 20, right: 20),
+         padding: EdgeInsets.only(top: 12, bottom: 12, left: 20, right: 20),
         decoration: BoxDecoration(
             borderRadius: sendByMe
                 ? BorderRadius.only(
@@ -168,7 +168,7 @@ class MessageTile extends StatelessWidget {
                     bottomRight: Radius.circular(23)),
             gradient: LinearGradient(
               colors: sendByMe
-                  ? [const Color(0xff007EF4), const Color(0xff2A75BC)]
+                  ? [ Colors.deepPurpleAccent, Colors.deepPurple]
                   : [const Color(0x1AFFFFFF), const Color(0x1AFFFFFF)],
             )),
         child: Text(message,
