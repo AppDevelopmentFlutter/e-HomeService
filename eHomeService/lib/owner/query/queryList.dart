@@ -1,6 +1,7 @@
 import 'package:eHomeService/chat/services/crud.dart';
 import 'package:eHomeService/chat/views/chat.dart';
 import 'package:eHomeService/chat/views/OwnerChatRoom.dart';
+import 'package:eHomeService/owner/query/queryTile.dart';
 import 'package:eHomeService/userSide/usersTile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eHomeService/chat/views/chat.dart';
@@ -43,11 +44,13 @@ class _QueryState extends State<Query> {
                       itemCount: snapshot.data.documents.length,
                       itemBuilder: (context, index) {
                         DocumentSnapshot documentSnapshot = snapshot.data.documents[index];
-                        return UsersTile(
+                        return QueryTile(
                         imgUrl: documentSnapshot['ImageUrl'],
                         problem: documentSnapshot['Problem'],
-                        description: documentSnapshot['Description'],
-                        mobileno: documentSnapshot['Phone Number'],
+                        // description: documentSnapshot['Description'],
+                        // mobileno: documentSnapshot['Phone Number'],
+                        email: documentSnapshot['Email'],
+                        documentSnapshot :documentSnapshot,
                       );
                     });
                   }
