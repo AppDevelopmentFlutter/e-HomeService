@@ -54,8 +54,10 @@ class _ProblemPostState extends State<ProblemPost> {
                       return UsersTile(
                         imgUrl: documentSnapshot['ImageUrl'],
                         problem: documentSnapshot['Problem'],
-                        description: documentSnapshot['Description'],
-                        mobileno: documentSnapshot['Phone Number'],
+                        time: documentSnapshot['Time'],
+                        documentSnapshot:  documentSnapshot,
+                        // description: documentSnapshot['Description'],
+                        // mobileno: documentSnapshot['Phone Number'],
                       );
                     });
               }

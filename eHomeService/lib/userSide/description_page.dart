@@ -203,11 +203,14 @@ class _DescriptionPageState extends State<DescriptionPage> {
                   enabledBorder: borderStyle(),
                   focusedBorder: borderStyle(),
                 )),
+
           ),
             Padding(
             padding: EdgeInsets.all(9),
             child: TextFormField(
-              //maxLength: 20,
+              maxLines: 2,
+              keyboardType: TextInputType.multiline,
+               maxLength: null,
                 onSaved: (value){
                       return _description=value;
                     },
@@ -241,7 +244,9 @@ class _DescriptionPageState extends State<DescriptionPage> {
                       return _address=value;
 
                     },
-                    
+                    maxLines: 2,
+              keyboardType: TextInputType.multiline,
+               maxLength: null,
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   hintText: "Address *",

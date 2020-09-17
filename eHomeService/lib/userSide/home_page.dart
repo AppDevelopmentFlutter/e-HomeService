@@ -70,8 +70,20 @@ class _HomePageState extends State<HomePage>
           controller: _tabController,
           indicatorColor: Colors.white ,
           tabs: <Widget>[
-            new Tab(text:"Problem"),
-            new Tab(text:"Description"),
+            new Tab(child: Container(
+                    child: Text("Problem",
+                        style: TextStyle(
+                            color: Colors.grey[200],
+                            fontWeight: FontWeight.w500,
+                            fontSize: 19)),
+                  ),),
+            new Tab(child: Container(
+                    child: Text("Description",
+                        style: TextStyle(
+                            color: Colors.grey[200],
+                            fontWeight: FontWeight.w500,
+                            fontSize: 19)),
+                  ),),
             // new Tab(text:"Bank"),
           ]
         ),
