@@ -35,6 +35,12 @@ TextStyle biggerTextStyle() {
   return TextStyle(color: Colors.white, fontSize: 17);
 }
 
+
+TextStyle biggerTextStyleDetail() {
+  return TextStyle(color: Colors.black, fontSize: 20);
+}
+
+
 LinearGradient gradientColors(){
   return LinearGradient(
                   colors: [Colors.deepPurpleAccent[200],

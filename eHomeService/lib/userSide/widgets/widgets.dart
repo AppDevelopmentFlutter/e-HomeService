@@ -13,6 +13,7 @@ TextStyle simpleStyleWhite() {
   return TextStyle(
       color: Colors.white, fontSize: 17, fontFamily: "GentiumBasic");
 }
+
 TextStyle appbarStyle() {
   return TextStyle(
       color: Colors.white, fontSize: 28, fontFamily: "GentiumBasic");
@@ -34,10 +35,34 @@ OutlineInputBorder borderStyle() {
     borderSide: BorderSide(color: Colors.deepPurpleAccent[200]),
   );
 }
+TextStyle inputTextStyleDetail() {
+  return TextStyle(
+   
+      color: Colors.black, fontSize: 20, fontFamily: "GentiumBasic");
+}
+
+OutlineInputBorder borderStyleDetail() {
+  return OutlineInputBorder(
+    borderRadius: BorderRadius.all(Radius.circular(1.0)),
+    borderSide: BorderSide(color: Colors.black),
+  );
+}
+
 
 UnderlineInputBorder borderStyleAuthentication() {
   return UnderlineInputBorder(
     // borderRadius: BorderRadius.all(Radius.circular(10.0)),
     borderSide: BorderSide(color: Colors.deepPurpleAccent[200]),
   );
+}
+
+
+
+TextStyle textStyleDetail() {
+  return TextStyle(
+    color: Colors.black,
+    fontSize: 21,
+    fontFamily: "GentiumBasic",
+    fontWeight: FontWeight.bold
+    );
 }
