@@ -53,8 +53,20 @@ class _OwnerHomePageState extends State<OwnerHomePage> with SingleTickerProvider
           controller: _tabController,
           indicatorColor: Colors.white ,
           tabs: <Widget>[
-            new Tab(text:"Query"),
-            new Tab(text:"Contact"),
+            new Tab( child: Container(
+                    child: Text("Query",
+                        style: TextStyle(
+                            color: Colors.grey[200],
+                            fontWeight: FontWeight.w500,
+                            fontSize: 19)),
+                  ),),
+            new Tab(child: Container(
+                    child: Text("Contacts",
+                        style: TextStyle(
+                            color: Colors.grey[200],
+                            fontWeight: FontWeight.w500,
+                            fontSize: 19)),
+                  )),
             // new Tab(text:"Bank"),
           ]
         ),
