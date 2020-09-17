@@ -111,19 +111,9 @@ class ChatRoomsTile extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
         child: Row(
           children: [
-            Container(
-              height: 30,
-              width: 30,
-              decoration: BoxDecoration(
-                  color: CustomTheme.colorAccent,
-                  borderRadius: BorderRadius.circular(30)),
-              child: Text(userName.substring(0,0),
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontFamily: 'OverpassRegular',
-                      fontWeight: FontWeight.w300)),
+             CircleAvatar(
+                radius: 25,
+                backgroundImage: AssetImage('assets/profilelogo.jpg'),
             ),
             SizedBox(
               width: 12,
@@ -132,7 +122,8 @@ class ChatRoomsTile extends StatelessWidget {
                 textAlign: TextAlign.start,
                 style: TextStyle(
                     color: Colors.white,
-                    fontSize: 16,
+                    fontSize: 18,
+                    letterSpacing: 0.5,
                     fontFamily: 'OverpassRegular',
                     fontWeight: FontWeight.w300))
           ],
