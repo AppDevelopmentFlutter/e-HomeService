@@ -15,6 +15,7 @@ import 'package:random_string/random_string.dart';
 
 class DescriptionPage extends StatefulWidget {
 final String email;
+//final String username;
 
 
   const DescriptionPage({Key key, this.email}) : super(key: key);
@@ -25,10 +26,13 @@ final String email;
 
 class _DescriptionPageState extends State<DescriptionPage> {
   String emailValue;
+   String userName;
+
   void initState(){
     super.initState();
     // you can use this.widget.foo here
     emailValue = this.widget.email;
+    //userName= this.widget.username;
 
   }
   TextEditingController _textFieldController =TextEditingController();
@@ -60,6 +64,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
       setState(() {
         _isLoading = true;
       });
+      print("hello Im here");
       StorageReference postImageRef = FirebaseStorage.instance
           .ref()
           .child("Post Image")
@@ -78,6 +83,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
         "Address": _address,
         "Phone Number": _phoneNumber,
         "Email":emailValue,
+        "Status": 'Pending',
       };
       print("crude operation");
       crudMethods.Upload(problemDetails).then((result) {
@@ -209,7 +215,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
             padding: EdgeInsets.all(9),
             child: TextFormField(
               maxLines: 2,
-              keyboardType: TextInputType.multiline,
+            //  keyboardType: TextInputType.multiline,
                maxLength: null,
                 onSaved: (value){
                       return _description=value;
@@ -245,8 +251,8 @@ class _DescriptionPageState extends State<DescriptionPage> {
 
                     },
                     maxLines: 2,
-              keyboardType: TextInputType.multiline,
-               maxLength: null,
+             // keyboardType: TextInputType.multiline,
+              // maxLength: 3,
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   hintText: "Address *",
