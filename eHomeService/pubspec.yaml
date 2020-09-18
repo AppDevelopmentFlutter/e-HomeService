@@ -39,12 +39,12 @@ dependencies:
   shared_preferences: ^0.5.10
   random_string: ^2.1.0
   cached_network_image:
-
+  # getwidget: ^1.1.0
   # for form field
   datetime_picker_formfield: ^1.0.0
   dropdown_formfield: ^0.1.2
   google_sign_in: ^4.5.3
-
+  getwidget: ^1.1.0
   # for image
 
   file_picker: ^1.12.0
