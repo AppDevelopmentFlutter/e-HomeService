@@ -50,6 +50,7 @@ class _QueryState extends State<Query> {
                         // description: documentSnapshot['Description'],
                         // mobileno: documentSnapshot['Phone Number'],
                         email: documentSnapshot['Email'],
+                        status:documentSnapshot['Status'],
                         documentSnapshot :documentSnapshot,
                       );
                     });

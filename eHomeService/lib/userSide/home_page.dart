@@ -14,6 +14,7 @@ import 'description_page.dart';
 
 class HomePage extends StatefulWidget {
   final String email;
+  //final String username;
 
   const HomePage({Key key, this.email}) : super(key: key);
   @override
@@ -23,14 +24,17 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   String emailValue;
+ // String userName;
 
 
    void initState(){
     super.initState();
     
     emailValue = this.widget.email;
+    //userName= this.widget.username;
     _tabController = new TabController(length: 2, vsync: this, initialIndex: 0);
     print("This is my email:"+emailValue);
+    
   }
 
   TabController _tabController;

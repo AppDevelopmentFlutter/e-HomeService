@@ -1,20 +1,33 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eHomeService/chat/widget/widget.dart';
 import 'package:eHomeService/userSide/widgets/widgets.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_widgets/gradient_widgets.dart';
 import 'package:transparent_image/transparent_image.dart';
 
-class QueryDetails extends StatelessWidget {
+class QueryDetails extends StatefulWidget {
    DocumentSnapshot documentSnapshot;
+   String mobileno;
 
-  int startIndex = 0;
-  int endIndex = 10;
 
   QueryDetails(
       {
+        @required this.mobileno,
       @required this.documentSnapshot
       });
+
+  @override
+  _QueryDetailsState createState() => _QueryDetailsState();
+}
+
+class _QueryDetailsState extends State<QueryDetails> {
+  int startIndex = 0;
+
+  int endIndex = 10;
+
+   bool _isPressed = false;
+
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +38,7 @@ class QueryDetails extends StatelessWidget {
           SliverAppBar(
             pinned:true,
             backgroundColor: Colors.black,
-            expandedHeight: 250.0,
+            expandedHeight: 150.0,
             flexibleSpace: FlexibleSpaceBar(
               title:Row(
                 children: <Widget>[
@@ -64,7 +77,7 @@ class QueryDetails extends StatelessWidget {
                             Center(
                               child:FadeInImage.memoryNetwork(
                                 placeholder: kTransparentImage,
-                                  image: documentSnapshot['ImageUrl'],
+                                  image: widget.documentSnapshot['ImageUrl'],
                                   width: 300.0,
                                   height: 350.0,
                                ),
@@ -81,7 +94,7 @@ class QueryDetails extends StatelessWidget {
                             Align(
                               alignment: Alignment.center,
                               child: Text(
-                               documentSnapshot['Problem'],
+                               widget.documentSnapshot['Problem'],
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     color: Colors.black,
@@ -95,7 +108,7 @@ class QueryDetails extends StatelessWidget {
                               padding: EdgeInsets.all(10.0),
                               child:  Align(
                               alignment: Alignment.center,
-                              child: Text(documentSnapshot['Description'],
+                              child: Text(widget.documentSnapshot['Description'],
                                 textAlign: TextAlign.center,
                                 style: inputTextStyleDetail()),
                             ),
@@ -103,7 +116,7 @@ class QueryDetails extends StatelessWidget {
                             Align(
                               alignment: Alignment.center,
                               child: Text(
-                                documentSnapshot['Time'].toDate().toString(),
+                                widget.documentSnapshot['Time'].toDate().toString(),
                                 style: inputTextStyleDetail(),
                               ),
                             ),
@@ -126,21 +139,21 @@ class QueryDetails extends StatelessWidget {
                             Align(
                               alignment: Alignment.center,
                               child: Text(
-                                documentSnapshot['Email'],
+                                widget.documentSnapshot['Email'],
                                 style: inputTextStyleDetail(),
                               ),
                             ),
                             Align(
                               alignment: Alignment.center,
                               child: Text(
-                                documentSnapshot['Phone Number'],
+                                widget.documentSnapshot['Phone Number'],
                                 style: inputTextStyleDetail(),
                               ),
                             ),
                             Align(
                               alignment: Alignment.center,
                               child: Text(
-                                documentSnapshot['Address'],
+                                widget.documentSnapshot['Address'],
                                 style: inputTextStyleDetail(),
                               ),
                             ),
@@ -201,9 +214,29 @@ class QueryDetails extends StatelessWidget {
                                               color:Colors.blueAccent[200],
                                               style: BorderStyle.solid),
                                           borderRadius: BorderRadius.circular(8)),
-                                      onPressed: null,
-                                    ),
+                                      onPressed: _isPressed
+                          ? null
+                          : () {
+                              
+                              Firestore.instance
+                                  .collection("Problems")
+                                  .document()
+                                  .updateData(
+                                {
+                                  "status": "Completed",
+                                },
+                              );
+                                 setState(
+                                () => _isPressed = !_isPressed,
+                              );
+                              if (_isPressed == true) {
+                                print("True");
+                              } else {
+                                print("Disabled");
+                              }
+                            }),   
                                   ),
+                                  
                                   SizedBox(width:20),
                                   Align(
                                     alignment: Alignment.center,

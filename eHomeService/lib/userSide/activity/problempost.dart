@@ -56,6 +56,7 @@ class _ProblemPostState extends State<ProblemPost> {
                         problem: documentSnapshot['Problem'],
                         time: documentSnapshot['Time'],
                         documentSnapshot:  documentSnapshot,
+                        status:documentSnapshot['Status'],
                         // description: documentSnapshot['Description'],
                         // mobileno: documentSnapshot['Phone Number'],
                       );

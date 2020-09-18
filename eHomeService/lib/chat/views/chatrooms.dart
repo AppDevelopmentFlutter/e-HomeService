@@ -117,7 +117,8 @@ class ChatRoomsTile extends StatelessWidget {
           children: [
           CircleAvatar(
                 radius: 25,
-                backgroundImage: AssetImage('assets/profilelogo.jpg'),
+                backgroundImage: AssetImage('assets/profilelogo.jpg',),
+              
             ),
             SizedBox(
               width: 18,

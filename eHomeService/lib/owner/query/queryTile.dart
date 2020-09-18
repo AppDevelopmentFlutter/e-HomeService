@@ -1,5 +1,3 @@
-
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eHomeService/chat/widget/widget.dart';
@@ -7,7 +5,7 @@ import 'package:eHomeService/owner/query/queryDetail.dart';
 import 'package:flutter/material.dart';
 
 class QueryTile extends StatelessWidget {
-  String imgUrl, problem, description, mobileno, email;
+  String imgUrl, problem, description, mobileno, email, status;
   DocumentSnapshot documentSnapshot;
   TextEditingController editingController = TextEditingController();
 
@@ -21,31 +19,29 @@ class QueryTile extends StatelessWidget {
       // @required this.mobileno,
       @required this.email,
       @required this.documentSnapshot,
-
-      });
+      @required this.status});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.only(bottom: 16),
-        height: 160,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: Colors.grey, width: 2)),
-        child: GestureDetector(
-          onTap: (){
-            Navigator.push(
-              context, 
-              MaterialPageRoute(builder: (context)=> QueryDetails(
-                documentSnapshot : documentSnapshot,
-              ))
-            );
-          },
-          child: Card(
+      margin: EdgeInsets.only(bottom: 16),
+      height: 137,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: Colors.grey, width: 2)),
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => QueryDetails(
+                        documentSnapshot: documentSnapshot,
+                      )));
+        },
+        child: Card(
           elevation: 10,
           color: Colors.black,
-          child:SingleChildScrollView(
-            child:  Row(
+          child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Align(
@@ -54,7 +50,7 @@ class QueryTile extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     child: CachedNetworkImage(
                       imageUrl: imgUrl,
-                      height: 120,
+                      height: 110,
                       width: 110,
                       fit: BoxFit.fill,
                     ),
@@ -67,7 +63,8 @@ class QueryTile extends StatelessWidget {
                       Align(
                         alignment: Alignment.center,
                         child: Text(
-                          problem,
+                          problem[0].toUpperCase() +
+                              problem.substring(1).toLowerCase(),
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Colors.white,
@@ -76,50 +73,50 @@ class QueryTile extends StatelessWidget {
                               fontWeight: FontWeight.bold),
                         ),
                       ),
-                      SizedBox(height: 9),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Text(email,
-                            textAlign: TextAlign.center,
-                            style: biggerTextStyle()),
-                      ),
-                      SizedBox(height: 10),
+                      SizedBox(height: 8),
                       Align(
                         alignment: Alignment.center,
                         child: Text(
-                          documentSnapshot['Time'].toDate().toString(),
-                          style: biggerTextStyle(),
-                        ),
+                            documentSnapshot['Time']
+                                .toDate()
+                                .toString()
+                                .substring(0, 10),
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 15)),
                       ),
-                      SizedBox(height: 8),
+                      SizedBox(height: 5),
                       Align(
                         alignment: Alignment.center,
                         child: FlatButton(
                           color: Colors.white,
                           child: Text(
-                            "Pending",
-                           // myorder_status != null ? myorder_status : " ",
+                            status != null ? status : " ",
                             style: TextStyle(
-                                color:// myorder_status == 'Completed'
-                                   // ? 
-                                   // Colors.teal[200],
-                                   // : 
-                                    Colors.redAccent[200],
+                                color: status == 'Completed'
+                                    ? Colors.teal[200]
+                                    : Colors.redAccent[200],
                                 fontSize: 20),
                           ),
                           shape: new RoundedRectangleBorder(
                               side: BorderSide(
-                                  color: 
-                                  //myorder_status == 'Completed'
-                                     // ? 
-                                     // Colors.teal[200],
-                                    //  :
-                                     Colors.redAccent[200],
+                                  color: status == 'Completed'
+                                      ? Colors.teal[200]
+                                      : Colors.redAccent[200],
                                   style: BorderStyle.solid),
                               borderRadius: BorderRadius.circular(8)),
                           onPressed: null,
                         ),
-                         ),
+                      ),
+                      Align(
+                        alignment: Alignment.bottomRight,
+                        child: Text(
+                            documentSnapshot['Time']
+                                .toDate()
+                                .toString()
+                                .substring(11, 16),
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 13)),
+                      ),
                     ],
                   ),
                 ),
@@ -144,11 +141,9 @@ class QueryTile extends StatelessWidget {
                 //     ),
                 //   ),
                 // ),
-        ]),
-      
-          ),
+              ]),
+        ),
       ),
-    )
     );
   }
 }
