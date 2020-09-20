@@ -84,6 +84,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
         "Phone Number": _phoneNumber,
         "Email":emailValue,
         "Status": 'Pending',
+        "valid": 0,
         "Comment" :'No Comment',
       };
       print("crude operation");

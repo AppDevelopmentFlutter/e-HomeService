@@ -32,12 +32,37 @@ class _QueryDetailsState extends State<QueryDetails> {
   int endIndex = 10;
 
   bool _isPressed = false;
+  String comment;
 
   acceptLogic(){
-    
-
+    Firestore.instance.collection('Problems').document(widget.documentSnapshot.documentID).updateData({
+      "Comment" : comment,
+      "Status": "Accepted",
+      "valid": 1,
+    }).then((value) {
+      print("*******************************************");
+      print("==== updated ===");
+      print("*******************************************");
+    }).catchError((onError){
+      print("*******************************************");
+      print("error =====> :-( ");
+    });
   }
 
+  rejectLogic(){
+    Firestore.instance.collection('Problems').document(widget.documentSnapshot.documentID).updateData({
+      "Comment" : comment,
+      "Status": "Rejected",
+      "valid": -1,
+    }).then((value) {
+      print("*******************************************");
+      print("==== updated ===");
+      print("*******************************************");
+    }).catchError((onError){
+      print("*******************************************");
+      print("error =====> :-( ");
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -95,13 +120,17 @@ class _QueryDetailsState extends State<QueryDetails> {
                             ),
 
                           Stack(
-                                children: [
-                                Center(
+                            children: [
+                              Center(
+                                child: SizedBox(
+                                  width: 300,
+                                  height: 350,
                                   child:FadeInImage.memoryNetwork(
-                                  placeholder: kTransparentImage,
-                                  image: widget.documentSnapshot['ImageUrl'],
-                                  width: 300.0,
-                                  height: 350.0,
+                                    placeholder: kTransparentImage,
+                                    image: widget.documentSnapshot['ImageUrl'],
+                                      width: 300.0,
+                                      height: 350.0,
+                                  ),
                                 ),
                               ),
                                 // Center(
@@ -162,8 +191,7 @@ class _QueryDetailsState extends State<QueryDetails> {
                                             style:accordionSub()
                                           )
                                         ],
-                                      
-                                      
+
                                       ),
                                       SizedBox(height: 8.0),
                                       Row(
@@ -194,13 +222,13 @@ class _QueryDetailsState extends State<QueryDetails> {
                                 keyboardType: TextInputType.multiline,
                                 maxLength: null,
                                 onSaved: (value){
-                                  return null;
+                                  return comment = value;
                                 },
                                 onChanged: (value){
-                                  return  null;
+                                  return comment = value;
                                 },
                                 validator: (value){
-                                  return  null;
+                                  return comment = value;
                                 },
                                 style: TextStyle(color: Colors.black),
                                 decoration: InputDecoration(
@@ -237,16 +265,16 @@ class _QueryDetailsState extends State<QueryDetails> {
                                          ),
                                         ],
                                       ),
-                                      shape: new RoundedRectangleBorder(
+                                    shape: new RoundedRectangleBorder(
                                         side: BorderSide(
                                           color:Colors.blueAccent[200],
                                           style: BorderStyle.solid),
                                           borderRadius: BorderRadius.circular(8)),
-                                          onPressed: acceptLogic(),
+                                    onPressed: acceptLogic,
                                         ),
                                       ),
-                                      SizedBox(width:20),
-                                      Align(
+                                SizedBox(width:20),
+                                Align(
                                         alignment: Alignment.center,
                                         child: FlatButton(
                                           padding: EdgeInsets.all(15.0),
@@ -271,14 +299,13 @@ class _QueryDetailsState extends State<QueryDetails> {
                                               color:Colors.redAccent[200],
                                               style: BorderStyle.solid),
                                               borderRadius: BorderRadius.circular(8)),
-                                              onPressed: null,
+                                              onPressed: rejectLogic,
                                             ),
                                           ),
 
-                                        ],
-                                      ),
-                                    ),
-                                   
+                              ],
+                            ),
+                          ),
                     ],
                   ),
                 ),
