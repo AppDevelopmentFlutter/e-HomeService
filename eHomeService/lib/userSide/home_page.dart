@@ -49,30 +49,32 @@ class _HomePageState extends State<HomePage>
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-        
-          children: <Widget>[
-            GradientText("E-HomeServices",
+        centerTitle: true,
+        title:  GradientText("E-HomeServices",
                 gradient: LinearGradient(colors: [
                   Colors.deepPurpleAccent[200],
                   Colors.redAccent[200]
                 ]),
                 style: TextStyle(fontSize: 24, fontFamily: "GentiumBasic"),
-                textAlign: TextAlign.center)
-          ],
-       ),
-        actions: [
-          GestureDetector(
-              onTap: () {
-                auth.signOut();
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => Authenticate()));
-              },
-              child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Icon(Icons.exit_to_app)))
-        ],
+                textAlign: TextAlign.center),
+       
+      //   Row(
+      //     mainAxisAlignment: MainAxisAlignment.center,
+        
+      //     children: <Widget>[
+      //         ],
+      //  ),
+        // actions: [
+        //   GestureDetector(
+        //       onTap: () {
+        //         auth.signOut();
+        //         Navigator.pushReplacement(context,
+        //             MaterialPageRoute(builder: (context) => Authenticate()));
+        //       },
+        //       child: Container(
+        //           padding: EdgeInsets.symmetric(horizontal: 16.0),
+        //           child: Icon(Icons.exit_to_app)))
+        // ],
         bottom: new TabBar(
           controller: _tabController,
           indicatorColor: Colors.white ,

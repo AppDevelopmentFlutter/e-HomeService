@@ -28,31 +28,39 @@ class _OwnerHomePageState extends State<OwnerHomePage> with SingleTickerProvider
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor: Colors.black,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        title:  GradientText("E-HomeServices",
+        gradient: LinearGradient(colors: [
+          Colors.deepPurpleAccent[200],
+          Colors.redAccent[200]
+        ]),
+        style: TextStyle(fontSize: 24, fontFamily: "GentiumBasic"),
+        textAlign: TextAlign.center),
+      //   title: Row(
+      //     mainAxisAlignment: MainAxisAlignment.center,
         
-          children: <Widget>[
-            GradientText("E-HomeServices",
-                gradient: LinearGradient(colors: [
-                  Colors.deepPurpleAccent[200],
-                  Colors.redAccent[200]
-                ]),
-                style: TextStyle(fontSize: 24, fontFamily: "GentiumBasic"),
-                textAlign: TextAlign.center)
-          ],
-       ),
-        actions: [
-          GestureDetector(
-              onTap: () {
-                auth.signOut();
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => Authenticate()));
-              },
-              child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Icon(Icons.exit_to_app)))
-        ],
+      //     children: <Widget>[
+      //       GradientText("E-HomeServices",
+      //           gradient: LinearGradient(colors: [
+      //             Colors.deepPurpleAccent[200],
+      //             Colors.redAccent[200]
+      //           ]),
+      //           style: TextStyle(fontSize: 24, fontFamily: "GentiumBasic"),
+      //           textAlign: TextAlign.center)
+      //     ],
+      //  ),
+        // actions: [
+        //   GestureDetector(
+        //       onTap: () {
+        //         auth.signOut();
+        //         Navigator.pushReplacement(context,
+        //             MaterialPageRoute(builder: (context) => Authenticate()));
+        //       },
+        //       child: Container(
+        //           padding: EdgeInsets.symmetric(horizontal: 16.0),
+        //           child: Icon(Icons.exit_to_app)))
+        // ],
         bottom: new TabBar(
           controller: _tabController,
           indicatorColor: Colors.white ,
