@@ -37,8 +37,20 @@ OutlineInputBorder borderStyle() {
 }
 TextStyle inputTextStyleDetail() {
   return TextStyle(
-   
       color: Colors.black, fontSize: 20, fontFamily: "GentiumBasic");
+}
+TextStyle accordionMain() {
+  return TextStyle(
+      color: Colors.black, 
+      fontSize: 18,
+      fontWeight: FontWeight.bold,
+      fontFamily: "GentiumBasic");
+}
+TextStyle accordionSub() {
+  return TextStyle(
+      color: Colors.black, 
+      fontSize: 16, 
+      fontFamily: "GentiumBasic");
 }
 
 OutlineInputBorder borderStyleDetail() {

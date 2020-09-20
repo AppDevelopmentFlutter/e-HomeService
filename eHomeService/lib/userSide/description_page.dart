@@ -19,7 +19,7 @@ final String email;
 
 
   const DescriptionPage({Key key, this.email}) : super(key: key);
-  
+
   @override
   _DescriptionPageState createState() => _DescriptionPageState();
 }
@@ -84,6 +84,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
         "Phone Number": _phoneNumber,
         "Email":emailValue,
         "Status": 'Pending',
+        "Comment" :'No Comment',
       };
       print("crude operation");
       crudMethods.Upload(problemDetails).then((result) {
@@ -91,7 +92,10 @@ class _DescriptionPageState extends State<DescriptionPage> {
         Scaffold.of(context).showSnackBar(SnackBar(content: Text('Saved in Database')));
         print("after the snackbar");
       });
-    } else {}
+    } 
+    else {
+      Scaffold.of(context).showSnackBar(SnackBar(content: Text('Image is Required')));
+    }
   }
 
 
