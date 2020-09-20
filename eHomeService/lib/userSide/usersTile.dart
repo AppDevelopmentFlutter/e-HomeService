@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:eHomeService/chat/widget/widget.dart';
-import 'package:eHomeService/owner/query/queryDetail.dart';
+import 'package:eHomeService/userSide/activity/problemDetail.dart';
 import 'package:flutter/material.dart';
 
 class UsersTile extends StatelessWidget {
@@ -39,7 +38,7 @@ class UsersTile extends StatelessWidget {
                 MaterialPageRoute(
                     builder: (context) =>
                         //  Container()
-                        QueryDetails(
+                        ProblemDetail(
                           mobileno: mobileno,
                           documentSnapshot: documentSnapshot,
                         )));
@@ -92,13 +91,6 @@ class UsersTile extends StatelessWidget {
                                   TextStyle(color: Colors.white, fontSize: 15)),
                         ),
                         SizedBox(height: 5),
-                        // Align(
-                        //   alignment: Alignment.center,
-                        //   child: Text(time.toDate().toString(),
-                        //       textAlign: TextAlign.center,
-                        //       style: biggerTextStyle()),
-                        // ),
-
                         Align(
                           alignment: Alignment.center,
                            child: FlatButton(
@@ -106,14 +98,14 @@ class UsersTile extends StatelessWidget {
                           child: Text(
                             status != null ? status : " ",
                             style: TextStyle(
-                                color: status == 'Completed'
+                                color: status == 'Accepted'
                                     ? Colors.teal[200]
                                     : Colors.redAccent[200],
                                 fontSize: 20),
                           ),
                           shape: new RoundedRectangleBorder(
                               side: BorderSide(
-                                  color: status == 'Completed'
+                                  color: status == 'Accepted'
                                       ? Colors.teal[200]
                                       : Colors.redAccent[200],
                                   style: BorderStyle.solid),
