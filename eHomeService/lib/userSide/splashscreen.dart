@@ -27,7 +27,8 @@ class _SplashScreenState extends State<SplashScreen> {
               gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
-                  colors: [Colors.deepPurple[900], Colors.red],)),
+                  colors: [Colors.deepPurple[900], Colors.red],)
+                  ),
           child: Center(
           
             child: Image.asset(

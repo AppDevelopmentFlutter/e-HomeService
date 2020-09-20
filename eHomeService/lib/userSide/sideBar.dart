@@ -1,9 +1,18 @@
+import 'package:eHomeService/chat/helper/authenticate.dart';
+import 'package:eHomeService/chat/services/auth.dart';
+import 'package:eHomeService/owner/ownerProf.dart';
+import 'package:eHomeService/userSide/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:eHomeService/userSide/home_page.dart';
-import 'package:eHomeService/userSide/widgets/widgets.dart';
 
-class NavDrawer extends StatelessWidget {
+class SideBar extends StatefulWidget {
+  @override
+  _SideBarState createState() => _SideBarState();
+}
+
+class _SideBarState extends State<SideBar> {
+  AuthService auth = new AuthService();
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -23,22 +32,23 @@ class NavDrawer extends StatelessWidget {
                   )
                 ),
         ),
+       
         ListTile(
           leading: Icon(Icons.phone),
           title: Text(
-            'Contacts',
+            'Contact Us',
             style: simpleStyle(),
           ),
           onTap: () => {
-           // Navigator.push(
-           //     context, MaterialPageRoute(builder: (context) => Contacts()))
+           Navigator.push(
+               context, MaterialPageRoute(builder: (context) => OwnerProfile()))
           },
         ),
 
         ListTile(
-          leading: Icon(MdiIcons.logout),
+          leading: Icon(MdiIcons.fileDocumentEdit),
           title: Text(
-            'Logout',
+            'Terms  &  Conditions',
             style: simpleStyle(),
           ),
           onTap:() => {
@@ -47,14 +57,26 @@ class NavDrawer extends StatelessWidget {
           },
         ),
         ListTile(
-          leading: Icon(MdiIcons.logout),
+          leading: Icon(MdiIcons.thumbUp),
           title: Text(
-            'Admin Page',
+            'Problems  accepted',
             style: simpleStyle(),
           ),
           onTap:() => {
-           Navigator.push(
-               context, MaterialPageRoute(builder: (context) => HomePage()))
+          //  Navigator.push(
+          //      context, MaterialPageRoute(builder: (context) => ),)
+          },
+        ),
+         ListTile(
+          leading: Icon(MdiIcons.logout),
+          title: Text(
+            'Logout',
+            style: simpleStyle(),
+          ),
+          onTap:() => {
+          auth.signOut(),
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => Authenticate())),
           },
         ),
       ]),

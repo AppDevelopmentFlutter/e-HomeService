@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:eHomeService/userSide/description_page.dart';
-import 'package:eHomeService/userSide/navbar.dart';
+//import 'package:eHomeService/userSide/navbar.dart';
 import 'package:eHomeService/userSide/widgets/widgets.dart';
 
 class UserMessages extends StatefulWidget {
@@ -38,7 +38,7 @@ class _UserMessagesState extends State<UserMessages> {
                 ],
             )
           ),
-      drawer: NavDrawer(),
+     // drawer: NavDrawer(),
       body: ListView(
         shrinkWrap: true,
         children: <Widget>[
