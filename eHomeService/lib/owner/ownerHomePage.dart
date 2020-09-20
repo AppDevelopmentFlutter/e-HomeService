@@ -1,7 +1,9 @@
 import 'package:eHomeService/chat/helper/authenticate.dart';
 import 'package:eHomeService/chat/services/auth.dart';
 import 'package:eHomeService/chat/views/OwnerChatRoom.dart';
+import 'package:eHomeService/owner/OwnerNavbar.dart';
 import 'package:eHomeService/owner/query/queryList.dart';
+//import 'package:eHomeService/userSide/navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
 
@@ -28,13 +30,15 @@ class _OwnerHomePageState extends State<OwnerHomePage> with SingleTickerProvider
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+        
           children: <Widget>[
             GradientText("E-HomeServices",
                 gradient: LinearGradient(colors: [
                   Colors.deepPurpleAccent[200],
                   Colors.redAccent[200]
                 ]),
-                style: TextStyle(fontSize: 22, fontFamily: "GentiumBasic"),
+                style: TextStyle(fontSize: 24, fontFamily: "GentiumBasic"),
                 textAlign: TextAlign.center)
           ],
        ),
@@ -71,6 +75,7 @@ class _OwnerHomePageState extends State<OwnerHomePage> with SingleTickerProvider
           ]
         ),
       ),
+       drawer: NavDrawer(), 
       body: new TabBarView(
         controller: _tabController,
         children: [

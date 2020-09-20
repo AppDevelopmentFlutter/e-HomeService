@@ -5,6 +5,7 @@ import 'package:eHomeService/chat/views/chat.dart';
 import 'package:eHomeService/chat/views/signin.dart';
 import 'package:eHomeService/chat/widget/widget.dart';
 import 'package:eHomeService/userSide/activity/problempost.dart';
+import 'package:eHomeService/userSide/sideBar.dart';
 import 'package:eHomeService/userSide/usersTile.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
@@ -49,13 +50,15 @@ class _HomePageState extends State<HomePage>
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+        
           children: <Widget>[
             GradientText("E-HomeServices",
                 gradient: LinearGradient(colors: [
                   Colors.deepPurpleAccent[200],
                   Colors.redAccent[200]
                 ]),
-                style: TextStyle(fontSize: 22, fontFamily: "GentiumBasic"),
+                style: TextStyle(fontSize: 24, fontFamily: "GentiumBasic"),
                 textAlign: TextAlign.center)
           ],
        ),
@@ -92,6 +95,7 @@ class _HomePageState extends State<HomePage>
           ]
         ),
       ),
+       drawer: SideBar(), 
       body: new TabBarView(
         controller: _tabController,
         children: [
