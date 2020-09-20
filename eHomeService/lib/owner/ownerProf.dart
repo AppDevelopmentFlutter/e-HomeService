@@ -9,7 +9,7 @@ class OwnerProfile extends StatelessWidget {
         elevation: 0.0,
         backgroundColor: Colors.black,
       ),
-      body: Container(
+      body: SingleChildScrollView(
         child: Stack(
           children: <Widget>[
             Column(
