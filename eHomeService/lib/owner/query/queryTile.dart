@@ -92,14 +92,14 @@ class QueryTile extends StatelessWidget {
                           child: Text(
                             status != null ? status : " ",
                             style: TextStyle(
-                                color: status == 'Completed'
+                                color: status == 'Accepted'
                                     ? Colors.teal[200]
                                     : Colors.redAccent[200],
                                 fontSize: 20),
                           ),
                           shape: new RoundedRectangleBorder(
                               side: BorderSide(
-                                  color: status == 'Completed'
+                                  color: status == 'Accepted'
                                       ? Colors.teal[200]
                                       : Colors.redAccent[200],
                                   style: BorderStyle.solid),
