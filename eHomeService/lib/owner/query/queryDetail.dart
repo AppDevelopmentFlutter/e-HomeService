@@ -254,20 +254,20 @@ class _QueryDetailsState extends State<QueryDetails> {
                                       children: [
                                         new  Icon(
                                           Icons.thumb_up,
-                                          color:Colors.blueAccent[200],
+                                          color:Colors.teal,
                                         ),
                                         SizedBox(width:8.0),
                                         Text(
                                           "Accept",
                                           style: TextStyle(
-                                          color:Colors.blueAccent[200],
+                                          color:Colors.teal,
                                           fontSize: 20),
                                          ),
                                         ],
                                       ),
                                     shape: new RoundedRectangleBorder(
                                         side: BorderSide(
-                                          color:Colors.blueAccent[200],
+                                          color:Colors.teal,
                                           style: BorderStyle.solid),
                                           borderRadius: BorderRadius.circular(8)),
                                     onPressed: acceptLogic,

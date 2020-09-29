@@ -34,6 +34,7 @@ class QueryTile extends StatelessWidget {
           Navigator.push(
               context,
               MaterialPageRoute(
+                  // ignore: missing_required_param
                   builder: (context) => QueryDetails(
                         documentSnapshot: documentSnapshot,
                       )));

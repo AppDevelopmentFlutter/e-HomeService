@@ -56,17 +56,7 @@ class _SideBarState extends State<SideBar> {
            //     context, MaterialPageRoute(builder: (context) => About_Page()))
           },
         ),
-        ListTile(
-          leading: Icon(MdiIcons.thumbUp),
-          title: Text(
-            'Problems  accepted',
-            style: simpleStyle(),
-          ),
-          onTap:() => {
-          //  Navigator.push(
-          //      context, MaterialPageRoute(builder: (context) => ),)
-          },
-        ),
+        
          ListTile(
           leading: Icon(MdiIcons.logout),
           title: Text(
