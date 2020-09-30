@@ -47,7 +47,7 @@ class OwnerProfile extends StatelessWidget {
                       ),
                     ),
                     child: Padding(
-                      padding: EdgeInsets.only(top: 18),
+                      padding: EdgeInsets.only(top: 28),
                       child: Center(
                         child: Column(
                           children: <Widget>[
@@ -61,7 +61,7 @@ class OwnerProfile extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(height: 30),
+                          SizedBox(height: 50),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20),
                             child: Row(
@@ -84,7 +84,7 @@ class OwnerProfile extends StatelessWidget {
                             ),
                           ),
                           SizedBox(
-                            height: 20,
+                            height: 30,
                           ),
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width/5.5),
@@ -104,10 +104,37 @@ class OwnerProfile extends StatelessWidget {
                                     color: Colors.white,
                                     fontSize: 18,
                                   ),
-                                ), //Vijayalakshmicandr@gmail.com
+                                ), 
+                                
                               ],
                             ),
                           ),
+                           SizedBox(
+                            height: 30,
+                          ),
+                           Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 20),
+                             child: Row(
+                              children: [
+                                Text(
+                                  "Address:\n",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                                SizedBox(width: 20,),
+                                Text(
+                                  "Santosh Shetty, Kodikal,\nMangalore",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                  ),
+                                ), 
+                                
+                              ],
+                            ),
+                           ),
                         ]),
                       ),
                     ),

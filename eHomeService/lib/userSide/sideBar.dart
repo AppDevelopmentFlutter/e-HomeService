@@ -1,6 +1,7 @@
 import 'package:eHomeService/chat/helper/authenticate.dart';
 import 'package:eHomeService/chat/services/auth.dart';
 import 'package:eHomeService/owner/ownerProf.dart';
+import 'package:eHomeService/terms_conditions.dart';
 import 'package:eHomeService/userSide/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -52,8 +53,8 @@ class _SideBarState extends State<SideBar> {
             style: simpleStyle(),
           ),
           onTap:() => {
-          //  Navigator.push(
-           //     context, MaterialPageRoute(builder: (context) => About_Page()))
+           Navigator.push(
+               context, MaterialPageRoute(builder: (context) => Terms_Conditions()))
           },
         ),
         

@@ -4,6 +4,7 @@ import 'package:eHomeService/chat/views/signup.dart';
 import 'package:eHomeService/owner/ownerHomePage.dart';
 import 'package:eHomeService/owner/ownerProf.dart';
 import 'package:eHomeService/owner/query/queryList.dart';
+import 'package:eHomeService/terms_conditions.dart';
 import 'package:eHomeService/userSide/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -51,7 +52,19 @@ class _NavDrawerState extends State<NavDrawer> {
                context, MaterialPageRoute(builder: (context) => OwnerProfile()))
           },
         ),
-
+        
+         ListTile(
+          leading: Icon(MdiIcons.fileDocumentEdit),
+          title: Text(
+            'Terms  &  Conditions',
+            style: simpleStyle(),
+          ),
+          onTap:() => {
+           Navigator.push(
+               context, MaterialPageRoute(builder: (context) => Terms_Conditions()))
+          },
+        ),
+        
         ListTile(
           leading: Icon(MdiIcons.thumbUp),
           title: Text(
