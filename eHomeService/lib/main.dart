@@ -74,7 +74,7 @@ class _MyAppState extends State<MyApp> {
         fontFamily: "OverpassRegular",
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: userIsLoggedIn != null ?  userIsLoggedIn ?  userEmail == 'owner@gmaiil.com'?
+      home: userIsLoggedIn != null ?  userIsLoggedIn ?  userEmail == 'owner@gmail.com'?
         OwnerHomePage():HomePage(email:userEmail)
         : Authenticate()
         : Container(
