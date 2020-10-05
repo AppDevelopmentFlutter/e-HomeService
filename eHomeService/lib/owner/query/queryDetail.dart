@@ -27,6 +27,8 @@ class QueryDetails extends StatefulWidget {
 }
 
 class _QueryDetailsState extends State<QueryDetails> {
+
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
   int startIndex = 0;
 
   int endIndex = 10;
@@ -34,7 +36,7 @@ class _QueryDetailsState extends State<QueryDetails> {
   bool _isPressed = false;
   String comment;
 
-  acceptLogic(){
+  acceptLogic() async{
     Firestore.instance.collection('Problems').document(widget.documentSnapshot.documentID).updateData({
       "Comment" : comment,
       "Status": "Accepted",
@@ -42,9 +44,13 @@ class _QueryDetailsState extends State<QueryDetails> {
     }).then((value) {
       print("*******************************************");
       print("==== updated ===");
+       final snackBar = SnackBar(content: Text('Query is Accepted'));
+    _scaffoldKey.currentState.showSnackBar(snackBar);  
+      // Scaffold.of(context).showSnackBar(SnackBar(content: Text('Saved in Database')));
       print("*******************************************");
     }).catchError((onError){
       print("*******************************************");
+      print(onError);
       print("error =====> :-( ");
     });
   }
@@ -56,8 +62,13 @@ class _QueryDetailsState extends State<QueryDetails> {
       "valid": -1,
     }).then((value) {
       print("*******************************************");
+      final snackBar = SnackBar(content: Text('Query is Rejected'));
+    _scaffoldKey.currentState.showSnackBar(snackBar);  
+
+      // Scaffold.of(context).showSnackBar(SnackBar(content: Text('Query is Rejected')));
       print("==== updated ===");
       print("*******************************************");
+   
     }).catchError((onError){
       print("*******************************************");
       print("error =====> :-( ");
@@ -67,6 +78,7 @@ class _QueryDetailsState extends State<QueryDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: Colors.black,
       body: CustomScrollView(
         slivers: [
@@ -263,6 +275,7 @@ class _QueryDetailsState extends State<QueryDetails> {
                                           color:Colors.teal,
                                           fontSize: 20),
                                          ),
+                                         
                                         ],
                                       ),
                                     shape: new RoundedRectangleBorder(
@@ -270,7 +283,10 @@ class _QueryDetailsState extends State<QueryDetails> {
                                           color:Colors.teal,
                                           style: BorderStyle.solid),
                                           borderRadius: BorderRadius.circular(8)),
-                                    onPressed: acceptLogic,
+                                    onPressed:() async{
+                                      await acceptLogic();
+                                      // Navigator.pop(context);
+                                    } 
                                         ),
                                       ),
                                 SizedBox(width:20),
